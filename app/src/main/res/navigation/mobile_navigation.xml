@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="hou.edu.vn.ngvtuan.food_app.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_dailymeal"
+        android:name="hou.edu.vn.ngvtuan.food_app.ui.dailymeal.DailyMealFragment"
+        android:label="Bữa Ăn Hàng Ngày"
+        tools:layout="@layout/fragment_dailymeal" />
+
+    <fragment
+        android:id="@+id/nav_favorite"
+        android:name="hou.edu.vn.ngvtuan.food_app.ui.favorite.FavoriteFragment"
+        android:label="Yêu Thích"
+        tools:layout="@layout/fragment_favorite" />
+    <fragment
+        android:id="@+id/nav_my_cart"
+        android:name="hou.edu.vn.ngvtuan.food_app.ui.cart.MyCartFragment"
+        android:label="Giỏ Hàng Của Tôi"
+        tools:layout="@layout/fragment_my_cart" />
+</navigation>
