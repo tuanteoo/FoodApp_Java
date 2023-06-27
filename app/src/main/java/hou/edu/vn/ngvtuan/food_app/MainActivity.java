@@ -2,6 +2,7 @@ package hou.edu.vn.ngvtuan.food_app;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private DataBaseHandler dataBaseHandler;
     String phonenumber1;
     public static UserModel userModel;
+    private static final String SHARED_PREF = "MySharePref";
 
 
     @SuppressLint("ApplySharedPref")
@@ -70,6 +72,11 @@ public class MainActivity extends AppCompatActivity {
 
         //Button Logout
         binding.btnLogout.setOnClickListener(v -> {
+            SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF,MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+            editor.putString("account","");
+            editor.apply();
 
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);

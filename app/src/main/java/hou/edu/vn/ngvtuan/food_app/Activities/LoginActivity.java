@@ -1,6 +1,7 @@
 package hou.edu.vn.ngvtuan.food_app.Activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -14,12 +15,15 @@ public class LoginActivity extends AppCompatActivity {
 
     ActivityLoginBinding binding;
     private DataBaseHandler dataBaseHandler;
+    private static final String SHARED_PREF = "MySharePref";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        checkBox();
 
         dataBaseHandler = new DataBaseHandler(this);
 
@@ -31,6 +35,12 @@ public class LoginActivity extends AppCompatActivity {
                 }else {
                     boolean checkAcc = dataBaseHandler.CheckAccount(phonenumber, password);
                     if (checkAcc) {
+                        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF,MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                        editor.putString("account","true");
+                        editor.apply();
+
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         intent.putExtra("phonenumber",phonenumber);
                         startActivity(intent);
@@ -45,5 +55,16 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
             startActivity(intent);
         });
+    }
+
+    private void checkBox() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF,MODE_PRIVATE);
+        String check = sharedPreferences.getString("account","");
+        if (check.equals("true")){
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
+            finish();
+        }
     }
 }

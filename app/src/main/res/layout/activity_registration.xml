@@ -89,7 +89,7 @@
       android:layout_height="wrap_content"
       android:backgroundTint="#CCCCCC"
       android:inputType="textPassword"
-      android:drawableLeft="@drawable/baseline_vpn_key_24"
+      android:drawableLeft="@drawable/baseline_lock_24"
       android:drawablePadding="13dp"
       android:hint="Mật Khẩu"
       android:textColor="@color/white"
