@@ -23,7 +23,8 @@
             android:exported="false" />
         <activity
             android:name=".Activities.LoginActivity"
-            android:exported="false" />
+            android:exported="false" >
+        </activity>
         <activity
             android:name=".Activities.WelcomeActivity"
             android:exported="true"

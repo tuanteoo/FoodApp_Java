@@ -2,7 +2,6 @@ package hou.edu.vn.ngvtuan.food_app;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -32,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private DataBaseHandler dataBaseHandler;
     String phonenumber1;
     public static UserModel userModel;
-    private static final String SHARED_PREF = "MySharePref";
+
 
 
     @SuppressLint("ApplySharedPref")
@@ -60,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         phonenumber1 = getIntent().getStringExtra("phonenumber");
 
         View view = navigationView.getHeaderView(0);
-        TextView hUsername = (TextView) view.findViewById(R.id.nav_username);
+        TextView hUsername = view.findViewById(R.id.nav_username);
         TextView hPhonenumber = view.findViewById(R.id.nav_phonenumber);
 
         dataBaseHandler = new DataBaseHandler(this);
@@ -70,18 +69,15 @@ public class MainActivity extends AppCompatActivity {
         hUsername.setText(userModel.getUsername());
         hPhonenumber.setText(userModel.getPhonenumber());
 
+        //SharePreferences
+
+
         //Button Logout
         binding.btnLogout.setOnClickListener(v -> {
-            SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF,MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-
-            editor.putString("account","");
-            editor.apply();
-
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
-            finish();
             Toast.makeText(MainActivity.this,"Đăng xuất thành công !",Toast.LENGTH_SHORT).show();
+            finish();
         });
     }
 

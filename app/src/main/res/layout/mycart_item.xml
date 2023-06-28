@@ -54,8 +54,9 @@
                     android:id="@+id/imageView4"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="10dp"
                     android:src="@drawable/star"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="ContentDescription,MissingConstraints" />
@@ -66,20 +67,24 @@
                     android:layout_height="wrap_content"
                     android:text="5.0"
                     android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                     app:layout_constraintStart_toEndOf="@+id/imageView4"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/imageView4"
                     tools:ignore="HardcodedText,MissingConstraints" />
 
                 <ImageView
                     android:id="@+id/imageView6"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:layout_marginLeft="80dp"
+                    android:layout_marginBottom="10dp"
                     android:src="@drawable/dollarsymbol"
                     android:tint="@color/purple_500"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView4"
-                    tools:ignore="ContentDescription,MissingConstraints,UseAppTint" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ContentDescription,MissingConstraints,UseAppTint"
+                    tools:layout_editor_absoluteX="35dp" />
 
                 <TextView
                     android:id="@+id/cart_price"
@@ -89,12 +94,13 @@
                     android:text="180"
                     android:textSize="22sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView6"
                     app:layout_constraintStart_toEndOf="@+id/imageView6"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView4"
+                    app:layout_constraintTop_toTopOf="@+id/imageView6"
                     tools:ignore="HardcodedText,MissingConstraints" />
 
                 <Button
+                    android:id="@+id/button"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:background="@drawable/baseline_delete_forever_24"

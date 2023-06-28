@@ -23,13 +23,12 @@ public class DataBaseHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS user(username TEXT,gender TEXT,dateofbirth TEXT, phonenumber TEXT PRIMARY KEY,password TEXT)");
     }
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS user");
         onCreate(db);
     }
-
+    //Insert Data To Table
     public Boolean InsertData (String username,String gender,String dateofbirth,String phonenumber,String password){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -47,7 +46,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
             return true;
         }
     }
-
+    //Check registered phone number ?
     public Boolean Checkphonenumber(String phonenumber){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
 
@@ -59,7 +58,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
             return false;
         }
     }
-
+    //Check if the account exists?
     public Boolean CheckAccount(String phonenumber,String password){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
 
@@ -71,7 +70,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
             return false;
         }
     }
-
+    // Lấy thông tin User với Phonenumber
     public ArrayList<UserModel> getLogin_User(String phonenumber){
         ArrayList <UserModel> listUser = new ArrayList<>();
 
@@ -96,4 +95,24 @@ public class DataBaseHandler extends SQLiteOpenHelper {
          }
          return listUser;
     }
+    // Update thông tin User
+    public boolean updateDataUser(String old_phonenumber, String username, String gender, String dateofbirth,String new_phonenumber, String password) {
+        // Get a writable instance of the SQLiteDatabase
+        SQLiteDatabase db = this.getWritableDatabase();
+        // Create a new ContentValues object and put the new values
+        ContentValues values = new ContentValues();
+        values.put("username", username);
+        values.put("gender", gender);
+        values.put("phonenumber",new_phonenumber);
+        values.put("dateofbirth", dateofbirth);
+        values.put("password", password);
+        // Define the where clause and where arguments
+        String whereClause = "phonenumber = ?";
+        String[] whereArgs = new String[]{old_phonenumber};
+        // Update the row in the database
+        int rowsAffected = db.update("user", values, whereClause, whereArgs);
+        // Check if the update was successful
+        return rowsAffected > 0;
+    }
 }
+
