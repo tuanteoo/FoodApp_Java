@@ -37,9 +37,6 @@ public class DetailedDailyMealActivity extends AppCompatActivity {
         binding.detailedRec.setAdapter(dailyAdapter);
 
         //Fab_MovetoCart
-        binding.btnMovetoCart.setOnClickListener(v -> {
-
-        });
 
         //Add Food BreakFast
         if (type != null && type.equalsIgnoreCase("Breakfast")){

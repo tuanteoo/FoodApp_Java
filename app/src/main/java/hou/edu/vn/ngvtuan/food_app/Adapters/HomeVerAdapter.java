@@ -16,7 +16,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
 
-
+import hou.edu.vn.ngvtuan.food_app.DataBase.DataBaseHandler;
 import hou.edu.vn.ngvtuan.food_app.R;
 import hou.edu.vn.ngvtuan.food_app.models.HomeVerModel;
 
@@ -25,6 +25,7 @@ public class HomeVerAdapter extends RecyclerView.Adapter<HomeVerAdapter.ViewHold
     private BottomSheetDialog bottomSheetDialog;
     Context context;
     ArrayList<HomeVerModel> list;
+    private DataBaseHandler dataBaseHandler;
 
     public HomeVerAdapter(Context context, ArrayList<HomeVerModel> list) {
         this.context = context;
@@ -35,6 +36,7 @@ public class HomeVerAdapter extends RecyclerView.Adapter<HomeVerAdapter.ViewHold
     @Override
     public HomeVerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.home_vertical_item, parent, false));
+
     }
 
     @Override
@@ -53,39 +55,33 @@ public class HomeVerAdapter extends RecyclerView.Adapter<HomeVerAdapter.ViewHold
         holder.price.setText(list.get(position).getPrice());
         holder.rating.setText(list.get(position).getRating());
 
-        holder.imageView.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("MissingInflatedId")
-            @Override
-            public void onClick(View v) {
+        holder.imageView.setOnClickListener(v -> {
 
-                bottomSheetDialog = new BottomSheetDialog(context,R.style.BottomSheetTheme);
+            bottomSheetDialog = new BottomSheetDialog(context,R.style.BottomSheetTheme);
 
-                @SuppressLint("InflateParams")
-                View sheetView = LayoutInflater.from(context).inflate(R.layout.bottom_sheet,null);
-                sheetView.findViewById(R.id.bottom_btn_addtoCart).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(context, "Đã thêm vào giỏ hàng",Toast.LENGTH_SHORT).show();
-                        bottomSheetDialog.dismiss();
-                    }
-                });
+            @SuppressLint("InflateParams")
+            View sheetView = LayoutInflater.from(context).inflate(R.layout.bottom_sheet,null);
+            sheetView.findViewById(R.id.bottom_btn_addtoCart).setOnClickListener(v1 -> {
+                // Call the InsertDataToOrder method here
+                Toast.makeText(context, "Đã thêm vào giỏ hàng",Toast.LENGTH_SHORT).show();
+                bottomSheetDialog.dismiss();
+            });
 
-                ImageView bottomImg = sheetView.findViewById(R.id.bottom_img);
-                TextView bottomName = sheetView.findViewById(R.id.bottom_name);
-                TextView bottomRating = sheetView.findViewById(R.id.bottom_rating);
-                TextView bottomTiming = sheetView.findViewById(R.id.bottom_timing);
-                TextView bottomPrice = sheetView.findViewById(R.id.bottom_price);
+            ImageView bottomImg = sheetView.findViewById(R.id.bottom_img);
+            TextView bottomName = sheetView.findViewById(R.id.bottom_name);
+            TextView bottomRating = sheetView.findViewById(R.id.bottom_rating);
+            TextView bottomTiming = sheetView.findViewById(R.id.bottom_timing);
+            TextView bottomPrice = sheetView.findViewById(R.id.bottom_price);
 
-                bottomImg.setImageResource(mImage);
-                bottomName.setText(mName);
-                bottomRating.setText(mRating);
-                bottomTiming.setText(mTiming);
-                bottomPrice.setText(mPrice);
+            bottomImg.setImageResource(mImage);
+            bottomName.setText(mName);
+            bottomRating.setText(mRating);
+            bottomTiming.setText(mTiming);
+            bottomPrice.setText(mPrice);
 
-                bottomSheetDialog.setContentView(sheetView);
-                bottomSheetDialog.show();
+            bottomSheetDialog.setContentView(sheetView);
+            bottomSheetDialog.show();
 
-            }
         });
     }
 
@@ -95,7 +91,6 @@ public class HomeVerAdapter extends RecyclerView.Adapter<HomeVerAdapter.ViewHold
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-
         ImageView imageView;
         TextView name,timing,rating,price;
 

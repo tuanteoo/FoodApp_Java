@@ -1,21 +1,22 @@
 package hou.edu.vn.ngvtuan.food_app.models;
 
 public class CartModel {
-    int image;
-    String name,rating,price;
+    byte[] image;
+    String name,rating;
+    Integer price;
 
-    public CartModel(int image, String name, String rating, String price) {
+    public CartModel(byte[] image, String name, String rating, Integer price) {
         this.image = image;
         this.name = name;
         this.rating = rating;
         this.price = price;
     }
 
-    public int getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 
@@ -35,11 +36,11 @@ public class CartModel {
         this.rating = rating;
     }
 
-    public String getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 }

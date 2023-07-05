@@ -32,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
     String phonenumber1;
     public static UserModel userModel;
 
-
-
     @SuppressLint("ApplySharedPref")
     @Override
     protected void onCreate(Bundle savedInstanceState) {

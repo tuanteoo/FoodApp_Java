@@ -1,5 +1,7 @@
 package hou.edu.vn.ngvtuan.food_app.Adapters;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,12 +32,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull CartAdapter.ViewHolder holder, int position) {
-        holder.image.setImageResource(list.get(position).getImage());
-        holder.name.setText(list.get(position).getName());
-        holder.rating.setText(list.get(position).getRating());
-        holder.price.setText(list.get(position).getPrice());
+        CartModel cartModel = list.get(position);
 
-
+        Bitmap bitmap = BitmapFactory.decodeByteArray(cartModel.getImage(), 0, cartModel.getImage().length);
+        holder.image.setImageBitmap(bitmap);
+        holder.name.setText(cartModel.getName());
+        holder.rating.setText(cartModel.getRating());
+        holder.price.setText(String.valueOf(cartModel.getPrice()));
     }
 
     @Override

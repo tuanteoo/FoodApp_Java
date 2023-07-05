@@ -14,24 +14,84 @@ import java.util.ArrayList;
 import hou.edu.vn.ngvtuan.food_app.models.UserModel;
 
 public class DataBaseHandler extends SQLiteOpenHelper {
+    private Context context;
 
     public DataBaseHandler(@Nullable Context context) {
         super(context, "foodapp.db", null, 1);
+        this.context = context;
     }
-
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS user(username TEXT,gender TEXT,dateofbirth TEXT, phonenumber TEXT PRIMARY KEY,password TEXT)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS food(image BLOB,foodname TEXT PRIMARY KEY,rating TEXT, price INT)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS orderlist(image BLOB,foodname TEXT PRIMARY KEY,rating TEXT,price INT)");
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS user");
+        db.execSQL("DROP TABLE IF EXISTS food");
+        db.execSQL("DROP TABLE IF EXISTS orderlist");
         onCreate(db);
     }
-    //Insert Data To Table
+
+
+    //Insert Data to Table OrderlistFood
+//    public void InsertDataToOrder(int imageResId, String foodName, String rating, Integer price) {
+//        // Convert the resource ID into a Bitmap
+//        Bitmap image = BitmapFactory.decodeResource(context.getResources(), imageResId);
+//
+//        // Convert the Bitmap into a byte[] array
+//        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+//        image.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+//        byte[] imageData = outputStream.toByteArray();
+//
+//        // Insert the data into the database
+//        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+//        ContentValues contentValues = new ContentValues();
+//        contentValues.put("image", imageData);
+//        contentValues.put("nameFood", foodName);
+//        contentValues.put("rating", rating);
+//        contentValues.put("price", price);
+//        sqLiteDatabase.insert("orderlist", null, contentValues);
+//    }
+
+//    public List<CartModel> getOrderListFood() {
+//        List<CartModel> cartModelList = new ArrayList<>();
+//        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+//        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM orderlist", null);
+//
+//        while (cursor.moveToNext()) {
+//            @SuppressLint("Range") byte[] image = cursor.getBlob(cursor.getColumnIndex("image"));
+//            @SuppressLint("Range") String foodName = cursor.getString(cursor.getColumnIndex("nameFood"));
+//            @SuppressLint("Range") String rating = cursor.getString(cursor.getColumnIndex("rating"));
+//            @SuppressLint("Range") int price = cursor.getInt(cursor.getColumnIndex("price"));
+//
+//            CartModel cartModel = new CartModel(image, foodName, rating, price);
+//            cartModelList.add(cartModel);
+//        }
+//        cursor.close();
+//        return cartModelList;
+//    }
+//
+//
+//    public int getTotalPrice() {
+//        int totalPrice = 0;
+//        SQLiteDatabase db = this.getReadableDatabase();
+//
+//        Cursor cursor = db.rawQuery("SELECT SUM(price) FROM orderlist", null);
+//        if (cursor.moveToFirst()) {
+//            totalPrice = cursor.getInt(3);
+//        }
+//        cursor.close();
+//        db.close();
+//
+//        return totalPrice;
+//    }
+    //Insert Data To Table User
     public Boolean InsertData (String username,String gender,String dateofbirth,String phonenumber,String password){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+
         contentValues.put("username",username);
         contentValues.put("gender",gender);
         contentValues.put("dateofbirth",dateofbirth);
@@ -95,6 +155,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
          }
          return listUser;
     }
+
     // Update thông tin User
     public boolean updateDataUser(String old_phonenumber, String username, String gender, String dateofbirth,String new_phonenumber, String password) {
         // Get a writable instance of the SQLiteDatabase

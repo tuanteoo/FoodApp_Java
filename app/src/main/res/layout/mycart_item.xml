@@ -100,7 +100,7 @@
                     tools:ignore="HardcodedText,MissingConstraints" />
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/deleteFood"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:background="@drawable/baseline_delete_forever_24"
