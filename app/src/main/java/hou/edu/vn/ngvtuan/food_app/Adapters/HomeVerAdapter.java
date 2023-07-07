@@ -2,6 +2,9 @@ package hou.edu.vn.ngvtuan.food_app.Adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 import hou.edu.vn.ngvtuan.food_app.DataBase.DataBaseHandler;
@@ -21,7 +25,6 @@ import hou.edu.vn.ngvtuan.food_app.R;
 import hou.edu.vn.ngvtuan.food_app.models.HomeVerModel;
 
 public class HomeVerAdapter extends RecyclerView.Adapter<HomeVerAdapter.ViewHolder> {
-
     private BottomSheetDialog bottomSheetDialog;
     Context context;
     ArrayList<HomeVerModel> list;
@@ -40,7 +43,7 @@ public class HomeVerAdapter extends RecyclerView.Adapter<HomeVerAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HomeVerAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         final int mImage = list.get(position).getImage();
         final String mName = list.get(position).getName();
@@ -61,11 +64,6 @@ public class HomeVerAdapter extends RecyclerView.Adapter<HomeVerAdapter.ViewHold
 
             @SuppressLint("InflateParams")
             View sheetView = LayoutInflater.from(context).inflate(R.layout.bottom_sheet,null);
-            sheetView.findViewById(R.id.bottom_btn_addtoCart).setOnClickListener(v1 -> {
-                // Call the InsertDataToOrder method here
-                Toast.makeText(context, "Đã thêm vào giỏ hàng",Toast.LENGTH_SHORT).show();
-                bottomSheetDialog.dismiss();
-            });
 
             ImageView bottomImg = sheetView.findViewById(R.id.bottom_img);
             TextView bottomName = sheetView.findViewById(R.id.bottom_name);
@@ -78,6 +76,24 @@ public class HomeVerAdapter extends RecyclerView.Adapter<HomeVerAdapter.ViewHold
             bottomRating.setText(mRating);
             bottomTiming.setText(mTiming);
             bottomPrice.setText(mPrice);
+
+            sheetView.findViewById(R.id.bottom_btn_addtoCart).setOnClickListener(v1 -> {
+
+                //Convert image to byte[]
+                Resources res = context.getResources();
+                Bitmap bitmap = BitmapFactory.decodeResource(res, mImage);
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                byte[] byteArray = stream.toByteArray();
+
+                // Call the InsertDataToOrder method here
+                dataBaseHandler = new DataBaseHandler(context);
+
+                dataBaseHandler.InsertDataToOrder(byteArray,mName,mRating,Integer.parseInt(mPrice));
+                Toast.makeText(context, "Đã thêm vào giỏ hàng",Toast.LENGTH_SHORT).show();
+
+                bottomSheetDialog.dismiss();
+            });
 
             bottomSheetDialog.setContentView(sheetView);
             bottomSheetDialog.show();

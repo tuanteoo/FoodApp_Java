@@ -75,7 +75,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/montserrat"
-        android:text="$0"
+        android:text="0"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/make_oder"
@@ -84,21 +84,33 @@
         app:layout_constraintVertical_bias="0.462"
         tools:ignore="HardcodedText,MissingConstraints" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dollar"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginEnd="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/TotalPrice"
+        app:layout_constraintEnd_toStartOf="@+id/TotalPrice"
+        app:layout_constraintTop_toTopOf="@+id/TotalPrice"
+        tools:ignore="MissingConstraints" />
+
     <Button
         android:id="@+id/make_oder"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:background="@drawable/btn_bg_design"
-        android:onClick="Make Order"
         android:padding="14dp"
         android:text="Đặt Hàng"
         android:textAllCaps="false"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view2"
-
+        app:layout_constraintVertical_bias="0.48"
         tools:ignore="HardcodedText,InvalidId,MissingConstraints,OnClick" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

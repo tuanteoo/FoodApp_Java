@@ -2,6 +2,7 @@ package hou.edu.vn.ngvtuan.food_app;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -25,8 +26,9 @@ import hou.edu.vn.ngvtuan.food_app.databinding.ActivityMainBinding;
 import hou.edu.vn.ngvtuan.food_app.models.UserModel;
 
 public class MainActivity extends AppCompatActivity {
-
     private AppBarConfiguration mAppBarConfiguration;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
     ActivityMainBinding binding;
     private DataBaseHandler dataBaseHandler;
     String phonenumber1;
@@ -68,10 +70,13 @@ public class MainActivity extends AppCompatActivity {
         hPhonenumber.setText(userModel.getPhonenumber());
 
         //SharePreferences
-
+        sharedPreferences = getSharedPreferences("SaveLogin",MODE_PRIVATE);
 
         //Button Logout
         binding.btnLogout.setOnClickListener(v -> {
+            editor.clear();
+            editor.apply();
+
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
             Toast.makeText(MainActivity.this,"Đăng xuất thành công !",Toast.LENGTH_SHORT).show();

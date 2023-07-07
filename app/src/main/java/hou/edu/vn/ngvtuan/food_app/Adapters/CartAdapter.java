@@ -1,6 +1,5 @@
 package hou.edu.vn.ngvtuan.food_app.Adapters;
 
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,12 +16,12 @@ import hou.edu.vn.ngvtuan.food_app.R;
 import hou.edu.vn.ngvtuan.food_app.models.CartModel;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
+    private final List<CartModel> cartModelList;
 
-    List<CartModel> list;
-
-    public CartAdapter(List<CartModel> list) {
-        this.list = list;
+    public CartAdapter(List<CartModel> cartModelList) {
+        this.cartModelList = cartModelList;
     }
+
 
     @NonNull
     @Override
@@ -32,10 +31,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull CartAdapter.ViewHolder holder, int position) {
-        CartModel cartModel = list.get(position);
+        CartModel cartModel = cartModelList.get(position);
 
-        Bitmap bitmap = BitmapFactory.decodeByteArray(cartModel.getImage(), 0, cartModel.getImage().length);
-        holder.image.setImageBitmap(bitmap);
+        holder.image.setImageBitmap(BitmapFactory.decodeByteArray(cartModel.getImage(), 0, cartModel.getImage().length));
         holder.name.setText(cartModel.getName());
         holder.rating.setText(cartModel.getRating());
         holder.price.setText(String.valueOf(cartModel.getPrice()));
@@ -43,14 +41,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return cartModelList.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-
         ImageView image;
         TextView name,rating,price;
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
