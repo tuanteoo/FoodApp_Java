@@ -46,7 +46,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
 //        values.put("price", price);
 //
 //        long result = db.insert("orderlist", null, values);
-//        if (result != -1){
+//        if (result == -1){
 //            return false;
 //        }
 //        else {
@@ -109,7 +109,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
 
         long result = sqLiteDatabase.insert("user",null,contentValues);
 
-        if (result != -1){
+        if (result == -1){
             return false;
         }
         else {
