@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import hou.edu.vn.ngvtuan.food_app.R;
-import hou.edu.vn.ngvtuan.food_app.models.FeaturedModel;
 import hou.edu.vn.ngvtuan.food_app.models.FeaturedVerModel;
 
 public class FeaturedVerAdapter extends RecyclerView.Adapter<FeaturedVerAdapter.ViewHolder> {
@@ -43,7 +42,7 @@ public class FeaturedVerAdapter extends RecyclerView.Adapter<FeaturedVerAdapter.
         return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
         TextView name,desc,rating,timing;
 

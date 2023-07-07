@@ -87,10 +87,14 @@ public class HomeVerAdapter extends RecyclerView.Adapter<HomeVerAdapter.ViewHold
                 byte[] byteArray = stream.toByteArray();
 
                 // Call the InsertDataToOrder method here
-                dataBaseHandler = new DataBaseHandler(context);
-
-                dataBaseHandler.InsertDataToOrder(byteArray,mName,mRating,Integer.parseInt(mPrice));
-                Toast.makeText(context, "Đã thêm vào giỏ hàng",Toast.LENGTH_SHORT).show();
+//                dataBaseHandler = new DataBaseHandler(context);
+//                boolean check = dataBaseHandler.InsertDataToOrder(byteArray,mName,mRating,Integer.parseInt(mPrice));
+//                if (check){
+//                    dataBaseHandler.InsertDataToOrder(byteArray,mName,mRating,Integer.parseInt(mPrice));
+                   Toast.makeText(context, "Đã thêm vào giỏ hàng",Toast.LENGTH_SHORT).show();
+//                }else {
+//                    Toast.makeText(context, "Lỗi",Toast.LENGTH_SHORT).show();
+//                }
 
                 bottomSheetDialog.dismiss();
             });

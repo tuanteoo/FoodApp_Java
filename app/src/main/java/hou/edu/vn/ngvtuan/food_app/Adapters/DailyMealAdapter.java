@@ -31,7 +31,7 @@ public class DailyMealAdapter extends RecyclerView.Adapter<DailyMealAdapter.View
     @NonNull
     @Override
     public DailyMealAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.dailymeal_item,parent,false));
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.dailymeal_item, parent, false));
     }
 
     @Override
@@ -42,13 +42,10 @@ public class DailyMealAdapter extends RecyclerView.Adapter<DailyMealAdapter.View
         holder.description.setText(list.get(position).getDescription());
         holder.discount.setText(list.get(position).getDiscount());
 
-        holder.imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, DetailedDailyMealActivity.class);
-                intent.putExtra("type",list.get(position).getType());
-                context.startActivity(intent);
-            }
+        holder.imageView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, DetailedDailyMealActivity.class);
+            intent.putExtra("type",list.get(position).getType());
+            context.startActivity(intent);
         });
     }
 
@@ -57,7 +54,7 @@ public class DailyMealAdapter extends RecyclerView.Adapter<DailyMealAdapter.View
         return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imageView;
         TextView name,description,discount;

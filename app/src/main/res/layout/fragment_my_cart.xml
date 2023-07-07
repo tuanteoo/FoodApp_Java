@@ -2,19 +2,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mycart"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
-    android:id="@+id/mycart"
     tools:context=".ui.cart.MyCartFragment">
 
     <TextView
         android:id="@+id/text_mycart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat"
         android:text="Giỏ Hàng Của Tôi"
         android:textSize="25sp"
-        android:fontFamily="@font/montserrat"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -35,24 +35,24 @@
         android:id="@+id/cart_rec"
         android:layout_width="match_parent"
         android:layout_height="400dp"
+        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view"
-        android:layout_marginTop="5dp"
         tools:ignore="MissingConstraints" />
 
     <View
         android:id="@+id/view2"
         android:layout_width="0dp"
         android:layout_height="3dp"
+        android:layout_marginBottom="100dp"
         android:background="@color/purple_500"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cart_rec"
-        app:layout_constraintWidth_percent=".6"
         app:layout_constraintVertical_bias=".3"
-        android:layout_marginBottom="100dp"
+        app:layout_constraintWidth_percent=".6"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -87,10 +87,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="2dp"
         android:text="@string/dollar"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_marginEnd="2dp"
         app:layout_constraintBottom_toBottomOf="@+id/TotalPrice"
         app:layout_constraintEnd_toStartOf="@+id/TotalPrice"
         app:layout_constraintTop_toTopOf="@+id/TotalPrice"

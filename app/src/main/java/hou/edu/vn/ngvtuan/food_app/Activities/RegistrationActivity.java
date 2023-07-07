@@ -37,12 +37,16 @@ public class RegistrationActivity extends AppCompatActivity {
                     boolean insert = dataBaseHandler.InsertData(username,"","",phonenumber,password);
                     if (insert){
                         Toast.makeText(RegistrationActivity.this,"Đăng ký tài khoản thành công!",Toast.LENGTH_SHORT).show();
+
                         Intent intent = new Intent(RegistrationActivity.this,LoginActivity.class);
                         startActivity(intent);
                     }
                     else {
                         Toast.makeText(RegistrationActivity.this,"Đăng ký tài khoản thất bại!",Toast.LENGTH_SHORT).show();
                     }
+                }
+                else{
+                    Toast.makeText(RegistrationActivity.this,"Số điện thoại này đã đăng ký rồi!",Toast.LENGTH_SHORT).show();
                 }
             }
         });

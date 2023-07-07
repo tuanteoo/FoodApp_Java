@@ -27,10 +27,8 @@ import hou.edu.vn.ngvtuan.food_app.models.UserModel;
 
 public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
-    private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     ActivityMainBinding binding;
-    private DataBaseHandler dataBaseHandler;
     String phonenumber1;
     public static UserModel userModel;
 
@@ -62,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         TextView hUsername = view.findViewById(R.id.nav_username);
         TextView hPhonenumber = view.findViewById(R.id.nav_phonenumber);
 
-        dataBaseHandler = new DataBaseHandler(this);
+        DataBaseHandler dataBaseHandler = new DataBaseHandler(this);
         ArrayList<UserModel> listUser = dataBaseHandler.getLogin_User(phonenumber1);
         userModel = listUser.get(0);
 
@@ -70,7 +68,8 @@ public class MainActivity extends AppCompatActivity {
         hPhonenumber.setText(userModel.getPhonenumber());
 
         //SharePreferences
-        sharedPreferences = getSharedPreferences("SaveLogin",MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("SaveLogin", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
         //Button Logout
         binding.btnLogout.setOnClickListener(v -> {
@@ -97,5 +96,4 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-
 }

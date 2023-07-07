@@ -32,7 +32,6 @@ public class HomeFragment extends Fragment implements UpdateVerticalRec {
     HomeVerAdapter homeVerAdapter;
     ImageButton imageButton;
 
-
     @SuppressLint("MissingInflatedId")
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

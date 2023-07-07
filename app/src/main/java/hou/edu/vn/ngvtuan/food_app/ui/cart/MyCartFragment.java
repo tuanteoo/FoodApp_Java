@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import hou.edu.vn.ngvtuan.food_app.Adapters.CartAdapter;
-import hou.edu.vn.ngvtuan.food_app.DataBase.DataBaseHandler;
 import hou.edu.vn.ngvtuan.food_app.R;
 import hou.edu.vn.ngvtuan.food_app.models.CartModel;
 
@@ -23,7 +22,7 @@ public class MyCartFragment extends Fragment {
     List<CartModel> cartModelList;
     RecyclerView recyclerView;
     CartAdapter cartAdapter;
-    private DataBaseHandler dataBaseHandler;
+
     public MyCartFragment() {
 
     }
@@ -40,26 +39,26 @@ public class MyCartFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));
 
         // Retrieve data from the orderlist table
-        dataBaseHandler = new DataBaseHandler(getContext());
-        cartModelList = dataBaseHandler.getAllDataOrder();
-        cartAdapter = new CartAdapter(cartModelList);
-        recyclerView.setAdapter(cartAdapter);
-
-        // Display the total price
-        TextView totalPriceTextView = view.findViewById(R.id.TotalPrice);
-        int totalPrice = dataBaseHandler.getTotalPrice();
-        totalPriceTextView.setText(""+totalPrice);
+       // DataBaseHandler dataBaseHandler = new DataBaseHandler(getContext());
+//        cartModelList = dataBaseHandler.getAllDataOrder();
+//        cartAdapter = new CartAdapter(cartModelList);
+//        recyclerView.setAdapter(cartAdapter);
+//
+//        // Display the total price
+//        TextView totalPriceTextView = view.findViewById(R.id.TotalPrice);
+//        int totalPrice = dataBaseHandler.getTotalPrice();
+//        totalPriceTextView.setText(""+totalPrice);
 
         Button btnMakeOrder = view.findViewById(R.id.make_oder);
         btnMakeOrder.setOnClickListener(v -> {
             // Delete all data from the orderlist table
-            dataBaseHandler.MakeOrder();
+            //dataBaseHandler.MakeOrder();
+            Toast.makeText(getContext(),"Đặt Hàng Thành Công",Toast.LENGTH_SHORT).show();
 
             // Update the RecyclerView
-            cartModelList.clear();
-            cartAdapter.notifyDataSetChanged();
+//            cartModelList.clear();
+//            cartAdapter.notifyDataSetChanged();
         });
         return view;
     }
-
 }

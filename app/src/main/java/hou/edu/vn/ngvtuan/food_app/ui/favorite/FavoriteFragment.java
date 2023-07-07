@@ -8,23 +8,17 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
 
-import java.util.Objects;
-
 import hou.edu.vn.ngvtuan.food_app.Adapters.FragmentAdapter;
 import hou.edu.vn.ngvtuan.food_app.R;
 public class FavoriteFragment extends Fragment {
-
     TabLayout tabLayout;
     ViewPager2 viewPager2;
     FragmentAdapter fragmentAdapter;
-    private FragmentActivity myContext;
-
     @SuppressLint("MissingInflatedId")
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
