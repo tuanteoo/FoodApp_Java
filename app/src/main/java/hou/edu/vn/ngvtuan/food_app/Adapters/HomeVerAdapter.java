@@ -29,19 +29,16 @@ public class HomeVerAdapter extends RecyclerView.Adapter<HomeVerAdapter.ViewHold
     Context context;
     ArrayList<HomeVerModel> list;
     private DataBaseHandler dataBaseHandler;
-
     public HomeVerAdapter(Context context, ArrayList<HomeVerModel> list) {
         this.context = context;
         this.list = list;
     }
-
     @NonNull
     @Override
     public HomeVerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.home_vertical_item, parent, false));
-
     }
-
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
@@ -51,7 +48,6 @@ public class HomeVerAdapter extends RecyclerView.Adapter<HomeVerAdapter.ViewHold
         final String mPrice = list.get(position).getPrice();
         final String mRating = list.get(position).getRating();
 
-
         holder.imageView.setImageResource(list.get(position).getImage());
         holder.name.setText(list.get(position).getName());
         holder.timing.setText(list.get(position).getTiming());
@@ -59,9 +55,7 @@ public class HomeVerAdapter extends RecyclerView.Adapter<HomeVerAdapter.ViewHold
         holder.rating.setText(list.get(position).getRating());
 
         holder.imageView.setOnClickListener(v -> {
-
             bottomSheetDialog = new BottomSheetDialog(context,R.style.BottomSheetTheme);
-
             @SuppressLint("InflateParams")
             View sheetView = LayoutInflater.from(context).inflate(R.layout.bottom_sheet,null);
 
@@ -78,42 +72,33 @@ public class HomeVerAdapter extends RecyclerView.Adapter<HomeVerAdapter.ViewHold
             bottomPrice.setText(mPrice);
 
             sheetView.findViewById(R.id.bottom_btn_addtoCart).setOnClickListener(v1 -> {
-
                 //Convert image to byte[]
                 Resources res = context.getResources();
                 Bitmap bitmap = BitmapFactory.decodeResource(res, mImage);
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                byte[] byteArray = stream.toByteArray();
-
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, stream);
+                byte[] byteImage = stream.toByteArray();
                 // Call the InsertDataToOrder method here
-//                dataBaseHandler = new DataBaseHandler(context);
-//                boolean check = dataBaseHandler.InsertDataToOrder(byteArray,mName,mRating,Integer.parseInt(mPrice));
-//                if (check){
-//                    dataBaseHandler.InsertDataToOrder(byteArray,mName,mRating,Integer.parseInt(mPrice));
+                dataBaseHandler = new DataBaseHandler(context);
+                boolean check = dataBaseHandler.InsertDataToOrder(byteImage,mName,mRating,Integer.parseInt(mPrice));
+                if (check){
                    Toast.makeText(context, "Đã thêm vào giỏ hàng",Toast.LENGTH_SHORT).show();
-//                }else {
-//                    Toast.makeText(context, "Lỗi",Toast.LENGTH_SHORT).show();
-//                }
-
+                }else {
+                    Toast.makeText(context, "Lỗi",Toast.LENGTH_SHORT).show();
+                }
                 bottomSheetDialog.dismiss();
             });
-
             bottomSheetDialog.setContentView(sheetView);
             bottomSheetDialog.show();
-
         });
     }
-
     @Override
     public int getItemCount() {
         return list.size();
     }
-
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
         TextView name,timing,rating,price;
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.ver_img);
@@ -122,6 +107,5 @@ public class HomeVerAdapter extends RecyclerView.Adapter<HomeVerAdapter.ViewHold
             rating= itemView.findViewById(R.id.rating);
             price = itemView.findViewById(R.id.price);
         }
-
     }
 }

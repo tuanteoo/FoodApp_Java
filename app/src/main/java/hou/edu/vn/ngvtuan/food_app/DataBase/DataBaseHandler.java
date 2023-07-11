@@ -11,90 +11,94 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
+import hou.edu.vn.ngvtuan.food_app.models.CartModel;
 import hou.edu.vn.ngvtuan.food_app.models.UserModel;
 
 public class DataBaseHandler extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "foodapp.db";
     private static final Integer DATABASE_VERSION = 1;
     private static final SQLiteDatabase.CursorFactory DATABASE_FACTORY = null;
-    private final Context context;
 
     public DataBaseHandler(@Nullable Context context) {
         super(context, DATABASE_NAME, DATABASE_FACTORY, DATABASE_VERSION);
-        this.context = context;
     }
-
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS user(username TEXT,phonenumber TEXT PRIMARY KEY,password TEXT,gender TEXT,dateofbirth TEXT )");
-        //db.execSQL("CREATE TABLE IF NOT EXISTS orderlist(image BLOB,foodname TEXT ,rating TEXT,price INTEGER)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS orderlist(image BLOB,foodname TEXT PRIMARY KEY,rating TEXT,price INTEGER)");
     }
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS user");
-        //db.execSQL("DROP TABLE IF EXISTS orderlist");
+        db.execSQL("DROP TABLE IF EXISTS orderlist");
+
         onCreate(db);
     }
-    //Insert Data to Table OrderlistFood
-//    public Boolean InsertDataToOrder(byte[] image, String foodName, String rating, int price) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues values = new ContentValues();
-//        values.put("image", image);
-//        values.put("foodname", foodName);
-//        values.put("rating", rating);
-//        values.put("price", price);
-//
-//        long result = db.insert("orderlist", null, values);
-//        if (result == -1){
-//            return false;
-//        }
-//        else {
-//            return true;
-//        }
-//    }
 
+
+    //Insert Data to Table OrderlistFood
+    public Boolean InsertDataToOrder(byte[] image, String foodName, String rating, Integer price) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("image", image);
+        values.put("foodname", foodName);
+        values.put("rating", rating);
+        values.put("price", price);
+
+        long result = db.insert("orderlist", null, values);
+
+        if (result == -1){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
     //Get List Food Order
-//    public List<CartModel> getAllDataOrder() {
-//        List<CartModel> orderList = new ArrayList<>();
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        Cursor cursor = db.rawQuery("SELECT * FROM orderlist", null);
-//        if (cursor.moveToFirst()) {
-//            do {
-//                byte[] image = cursor.getBlob(1);
-//                String foodName = cursor.getString(2);
-//                String rating = cursor.getString(3);
-//                int price = cursor.getInt(4);
-//                CartModel order = new CartModel(image, foodName, rating, price);
-//                orderList.add(order);
-//            } while (cursor.moveToNext());
-//        }
-//        cursor.close();
-//        db.close();
-//        return orderList;
-//    }
-//
+    public ArrayList<CartModel> getAllDataOrder() {
+        ArrayList<CartModel> orderList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM orderlist", null);
+        if (cursor.moveToFirst()) {
+            do {
+                byte[] image = cursor.getBlob(0);
+                String foodName = cursor.getString(1);
+                String rating = cursor.getString(2);
+                int price = cursor.getInt(3);
+                CartModel order = new CartModel(image, foodName, rating, price);
+                orderList.add(order);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return orderList;
+    }
 //    //Get Total Price
-//    public int getTotalPrice() {
-//        int totalPrice = 0;
-//        SQLiteDatabase db = this.getReadableDatabase();
-//
-//        Cursor cursor = db.rawQuery("SELECT SUM(price) FROM orderlist", null);
-//        if (cursor.moveToFirst()) {
-//            totalPrice = cursor.getInt(0);
-//        }
-//        cursor.close();
-//        db.close();
-//
-//        return totalPrice;
-//    }
+    public int getTotalPrice() {
+        int totalPrice = 0;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT SUM(price) FROM orderlist", null);
+        if (cursor.moveToFirst()) {
+            totalPrice = cursor.getInt(0);
+        }
+        cursor.close();
+        db.close();
+
+        return totalPrice;
+    }
+    //Delete Food by Name
+    public void DeleteFoodByName(String foodName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("orderlist", "foodname = ?", new String[]{foodName});
+        db.close();
+    }
 
    //Delete All List Order
-//    public void MakeOrder(){
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        db.execSQL("DELETE FROM orderlist");
-//    }
-
+    public void MakeOrder(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM orderlist");
+    }
     //Insert Data To Table User
     public Boolean InsertData (String username,String gender,String dateofbirth,String phonenumber,String password){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
@@ -105,7 +109,6 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         contentValues.put("password",password);
         contentValues.put("gender",gender);
         contentValues.put("dateofbirth",dateofbirth);
-
 
         long result = sqLiteDatabase.insert("user",null,contentValues);
 
@@ -149,7 +152,6 @@ public class DataBaseHandler extends SQLiteOpenHelper {
 
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
          @SuppressLint("Recycle") Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM user WHERE phonenumber = ?",new String[]{phonenumber});
-
          if (cursor.moveToFirst()){
             String username = cursor.getString(0);
             String gender = cursor.getString(3);
@@ -168,7 +170,6 @@ public class DataBaseHandler extends SQLiteOpenHelper {
          }
          return listUser;
     }
-
     // Update thông tin User
     public boolean updateDataUser(String old_phonenumber, String username, String gender, String dateofbirth,String new_phonenumber, String password) {
         // Get a writable instance of the SQLiteDatabase

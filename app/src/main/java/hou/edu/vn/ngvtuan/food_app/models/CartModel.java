@@ -3,9 +3,9 @@ package hou.edu.vn.ngvtuan.food_app.models;
 public class CartModel {
     byte[] image;
     String name,rating;
-    int price;
+    Integer price;
 
-    public CartModel(byte[] image, String name, String rating, int price) {
+    public CartModel(byte[] image, String name, String rating, Integer price) {
         this.image = image;
         this.name = name;
         this.rating = rating;
@@ -36,11 +36,11 @@ public class CartModel {
         this.rating = rating;
     }
 
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 }
