@@ -1,7 +1,9 @@
 package hou.edu.vn.ngvtuan.food_app.Activities;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -37,6 +39,14 @@ public class DetailedDailyMealActivity extends AppCompatActivity {
         binding.detailedRec.setAdapter(dailyAdapter);
 
         //Fab_MovetoCart
+        binding.btnMovetoCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //move to My Cart
+                Intent intent = new Intent(DetailedDailyMealActivity.this, LayoutMyCartActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //Add Food BreakFast
         if (type != null && type.equalsIgnoreCase("Breakfast")){

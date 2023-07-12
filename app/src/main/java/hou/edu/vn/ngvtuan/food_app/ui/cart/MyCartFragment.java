@@ -1,6 +1,7 @@
 package hou.edu.vn.ngvtuan.food_app.ui.cart;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import hou.edu.vn.ngvtuan.food_app.Activities.PaymentActivity;
 import hou.edu.vn.ngvtuan.food_app.Adapters.CartAdapter;
 import hou.edu.vn.ngvtuan.food_app.DataBase.DataBaseHandler;
 import hou.edu.vn.ngvtuan.food_app.R;
@@ -26,7 +28,6 @@ public class MyCartFragment extends Fragment {
     CartAdapter cartAdapter;
     private DataBaseHandler dataBaseHandler;
     TextView totalPriceTextView;
-
     public MyCartFragment() {
     }
     @SuppressLint({"MissingInflatedId", "SetTextI18n", "NotifyDataSetChanged"})
@@ -56,14 +57,11 @@ public class MyCartFragment extends Fragment {
             if (cartModelList.isEmpty()) {
                 Toast.makeText(getContext(),"Giỏ hàng trống,vui lòng đặt đồ ăn!",Toast.LENGTH_SHORT).show();
             } else {
-                // Delete all data from the orderlist table
-                dataBaseHandler.MakeOrder();
-                Toast.makeText(getContext(),"Đặt Hàng Thành Công",Toast.LENGTH_SHORT).show();
-
-                // Update the RecyclerView
-                cartModelList.clear();
-                updateTotalPrice();
-                cartAdapter.notifyDataSetChanged();
+                // Pass the total price to the PaymentActivity
+                int totalPrice = dataBaseHandler.getTotalPrice();
+                Intent intent = new Intent(getActivity(), PaymentActivity.class);
+                intent.putExtra("totalPrice", totalPrice);
+                startActivity(intent);
             }
         });
         return view;

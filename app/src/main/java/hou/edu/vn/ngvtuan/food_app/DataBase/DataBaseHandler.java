@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
 import hou.edu.vn.ngvtuan.food_app.models.CartModel;
+import hou.edu.vn.ngvtuan.food_app.models.BillModel;
 import hou.edu.vn.ngvtuan.food_app.models.UserModel;
 
 public class DataBaseHandler extends SQLiteOpenHelper {
@@ -26,15 +27,106 @@ public class DataBaseHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS user(username TEXT,phonenumber TEXT PRIMARY KEY,password TEXT,gender TEXT,dateofbirth TEXT )");
         db.execSQL("CREATE TABLE IF NOT EXISTS orderlist(image BLOB,foodname TEXT PRIMARY KEY,rating TEXT,price INTEGER)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS listBill(id INTEGER  PRIMARY KEY AUTOINCREMENT,username TEXT,phonenumber TEXT,address TEXT,price INTEGER )");
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS user");
         db.execSQL("DROP TABLE IF EXISTS orderlist");
-
+        db.execSQL("DROP TABLE IF EXISTS listBill");
         onCreate(db);
     }
 
+    //Insert Data To Table User
+    public Boolean InsertData (String username,String gender,String dateofbirth,String phonenumber,String password){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put("username",username);
+        contentValues.put("phonenumber",phonenumber);
+        contentValues.put("password",password);
+        contentValues.put("gender",gender);
+        contentValues.put("dateofbirth",dateofbirth);
+
+        long result = sqLiteDatabase.insert("user",null,contentValues);
+
+        if (result == -1){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    //Check registered phone number ?
+    public Boolean Checkphonenumber(String phonenumber){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+        @SuppressLint("Recycle") Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM user WHERE phonenumber = ?",new String[]{phonenumber});
+
+        if (cursor.getCount() > 0)
+        {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
+    //Check if the account exists?
+    public Boolean CheckAccount(String phonenumber,String password){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+        @SuppressLint("Recycle") Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM user WHERE phonenumber = ? AND password = ?",new String[]{phonenumber,password});
+
+        if (cursor.getCount() > 0)
+        {
+            return true;
+        }
+        else return false;
+    }
+    // Lấy thông tin User với Phonenumber
+    public ArrayList<UserModel> getLogin_User(String phonenumber){
+        ArrayList <UserModel> listUser = new ArrayList<>();
+
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        @SuppressLint("Recycle") Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM user WHERE phonenumber = ?",new String[]{phonenumber});
+        if (cursor.moveToFirst()){
+            String username = cursor.getString(0);
+            String gender = cursor.getString(3);
+            String dateofbirth = cursor.getString(4);
+            String phoneNumber = cursor.getString(1);
+            String password = cursor.getString(2);
+
+            UserModel userModel = new UserModel();
+            userModel.setUsername(username);
+            userModel.setGender(gender);
+            userModel.setDateOfBirth(dateofbirth);
+            userModel.setPhonenumber(phoneNumber);
+            userModel.setPassword(password);
+
+            listUser.add(userModel);
+        }
+        return listUser;
+    }
+    // Update thông tin User
+    public boolean updateDataUser(String old_phonenumber, String username, String gender, String dateofbirth,String new_phonenumber, String password) {
+        // Get a writable instance of the SQLiteDatabase
+        SQLiteDatabase db = this.getWritableDatabase();
+        // Create a new ContentValues object and put the new values
+        ContentValues values = new ContentValues();
+        values.put("username", username);
+        values.put("gender", gender);
+        values.put("phonenumber",new_phonenumber);
+        values.put("dateofbirth", dateofbirth);
+        values.put("password", password);
+        // Define the where clause and where arguments
+        String whereClause = "phonenumber = ?";
+        String[] whereArgs = new String[]{old_phonenumber};
+        // Update the row in the database
+        int rowsAffected = db.update("user", values, whereClause, whereArgs);
+        // Check if the update was successful
+        return rowsAffected > 0;
+    }
 
     //Insert Data to Table OrderlistFood
     public Boolean InsertDataToOrder(byte[] image, String foodName, String rating, Integer price) {
@@ -95,22 +187,22 @@ public class DataBaseHandler extends SQLiteOpenHelper {
     }
 
    //Delete All List Order
-    public void MakeOrder(){
+    public void DeleteCartOrder(){
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM orderlist");
     }
-    //Insert Data To Table User
-    public Boolean InsertData (String username,String gender,String dateofbirth,String phonenumber,String password){
-        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+    //Insert Data to Table historyOrder
+    public Boolean insertDataBill(String username, String phonenumber, String address, int price) {
+        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put("username",username);
-        contentValues.put("phonenumber",phonenumber);
-        contentValues.put("password",password);
-        contentValues.put("gender",gender);
-        contentValues.put("dateofbirth",dateofbirth);
+        contentValues.put("username", username);
+        contentValues.put("phonenumber", phonenumber);
+        contentValues.put("address", address);
+        contentValues.put("price", price);
 
-        long result = sqLiteDatabase.insert("user",null,contentValues);
+        long result = db.insert("listBill", null, contentValues);
 
         if (result == -1){
             return false;
@@ -119,75 +211,27 @@ public class DataBaseHandler extends SQLiteOpenHelper {
             return true;
         }
     }
-    //Check registered phone number ?
-    public Boolean Checkphonenumber(String phonenumber){
-        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+    //Get List Bill
+    public ArrayList<BillModel> getAllDataBill() {
+        ArrayList<BillModel> historyOrders = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query("listBill", null, null, null, null, null, null);
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(0);
+            String username = cursor.getString(1);
+            String phonenumber = cursor.getString(2);
+            String address = cursor.getString(3);
+            int price = cursor.getInt(4);
 
-        @SuppressLint("Recycle") Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM user WHERE phonenumber = ?",new String[]{phonenumber});
-
-        if (cursor.getCount() > 0)
-        {
-            return true;
+            historyOrders.add(new BillModel(id, username, phonenumber, address, price));
         }
-        else {
-            return false;
-        }
-
+        cursor.close();
+        return historyOrders;
     }
-    //Check if the account exists?
-    public Boolean CheckAccount(String phonenumber,String password){
-        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-
-        @SuppressLint("Recycle") Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM user WHERE phonenumber = ? AND password = ?",new String[]{phonenumber,password});
-
-        if (cursor.getCount() > 0)
-        {
-            return true;
-        }
-        else return false;
-    }
-    // Lấy thông tin User với Phonenumber
-    public ArrayList<UserModel> getLogin_User(String phonenumber){
-        ArrayList <UserModel> listUser = new ArrayList<>();
-
-        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-         @SuppressLint("Recycle") Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM user WHERE phonenumber = ?",new String[]{phonenumber});
-         if (cursor.moveToFirst()){
-            String username = cursor.getString(0);
-            String gender = cursor.getString(3);
-            String dateofbirth = cursor.getString(4);
-            String phoneNumber = cursor.getString(1);
-            String password = cursor.getString(2);
-
-            UserModel userModel = new UserModel();
-            userModel.setUsername(username);
-            userModel.setGender(gender);
-            userModel.setDateOfBirth(dateofbirth);
-            userModel.setPhonenumber(phoneNumber);
-            userModel.setPassword(password);
-
-            listUser.add(userModel);
-         }
-         return listUser;
-    }
-    // Update thông tin User
-    public boolean updateDataUser(String old_phonenumber, String username, String gender, String dateofbirth,String new_phonenumber, String password) {
-        // Get a writable instance of the SQLiteDatabase
+    //Delete All Bill
+    public void DeleteAllBill(){
         SQLiteDatabase db = this.getWritableDatabase();
-        // Create a new ContentValues object and put the new values
-        ContentValues values = new ContentValues();
-        values.put("username", username);
-        values.put("gender", gender);
-        values.put("phonenumber",new_phonenumber);
-        values.put("dateofbirth", dateofbirth);
-        values.put("password", password);
-        // Define the where clause and where arguments
-        String whereClause = "phonenumber = ?";
-        String[] whereArgs = new String[]{old_phonenumber};
-        // Update the row in the database
-        int rowsAffected = db.update("user", values, whereClause, whereArgs);
-        // Check if the update was successful
-        return rowsAffected > 0;
+        db.execSQL("DELETE FROM listBill");
     }
 }
 

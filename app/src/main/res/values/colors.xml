@@ -11,4 +11,5 @@
     <color name="lightGray">#DCDCDC</color>
     <color name="darkGray" tools:ignore="MissingDefaultResource">#27282c</color>
     <color name="mediumGray" tools:ignore="MissingDefaultResource">#262523</color>
+    <color name="yellow">#FFC107</color>
 </resources>

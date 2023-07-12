@@ -13,6 +13,15 @@
         android:theme="@style/Theme.Food_App"
         tools:targetApi="31">
         <activity
+            android:name=".Activities.LayoutBillActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.PaymentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.LayoutMyCartActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.UserInfoActivity"
             android:exported="false" />
         <activity
@@ -23,8 +32,7 @@
             android:exported="false" />
         <activity
             android:name=".Activities.LoginActivity"
-            android:exported="false" >
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".Activities.WelcomeActivity"
             android:exported="true"
@@ -40,8 +48,8 @@
             android:exported="false"
             android:label="Food App"
             android:theme="@style/Theme.Food_App.NoActionBar"
-            tools:ignore="RedundantLabel">
-        </activity>
+            tools:ignore="RedundantLabel" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

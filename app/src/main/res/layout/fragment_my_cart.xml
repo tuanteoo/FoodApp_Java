@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mycart"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
@@ -34,7 +33,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cart_rec"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="430dp"
         android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,15 +42,12 @@
 
     <View
         android:id="@+id/view2"
-        android:layout_width="0dp"
+        android:layout_width="235dp"
         android:layout_height="3dp"
-        android:layout_marginBottom="100dp"
         android:background="@color/purple_500"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/cart_rec"
+        app:layout_constraintStart_toStartOf="@+id/cart_rec"
         app:layout_constraintTop_toBottomOf="@+id/cart_rec"
-        app:layout_constraintVertical_bias=".3"
         app:layout_constraintWidth_percent=".6"
         tools:ignore="MissingConstraints" />
 
@@ -110,7 +106,7 @@
         app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view2"
-        app:layout_constraintVertical_bias="0.48"
+        app:layout_constraintVertical_bias="0.3"
         tools:ignore="HardcodedText,InvalidId,MissingConstraints,OnClick" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

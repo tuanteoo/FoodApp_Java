@@ -24,5 +24,10 @@
             android:icon="@drawable/ic_baseline_shopping_cart_24"
             android:title="Giỏ Hàng"
             tools:ignore="HardcodedText" />
+        <item
+            android:id="@+id/nav_history"
+            android:icon="@drawable/baseline_history_24"
+            android:title="Đơn Hàng"
+            tools:ignore="HardcodedText" />
     </group>
 </menu>
