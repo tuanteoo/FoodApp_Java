@@ -2,11 +2,12 @@ package hou.edu.vn.ngvtuan.food_app.models;
 
 public class BillModel {
     int id;
-    String username,phonenumber,address;
+    String username,phonenumber,address,date;
     int totalPrice;
 
-    public BillModel(int id, String username, String phonenumber, String address, int totalPrice) {
+    public BillModel(int id, String username, String phonenumber, String address,String date, int totalPrice) {
         this.id = id;
+        this.date = date;
         this.username = username;
         this.phonenumber = phonenumber;
         this.address = address;
@@ -19,6 +20,14 @@ public class BillModel {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getUsername() {

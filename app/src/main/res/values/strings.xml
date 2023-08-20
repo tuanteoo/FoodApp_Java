@@ -28,5 +28,9 @@
     <string name="text_deletebill">Xoá lịch sử đặt hàng</string>
     <string name="payment">Thanh Toán</string>
     <string name="fullname">Họ Tên</string>
+    <string name="searchyourfood">Tìm kiếm món ăn của bạn</string>
+    <string name="less">-</string>
+    <string name="quantity">1</string>
+    <string name="add">+</string>
 
 </resources>

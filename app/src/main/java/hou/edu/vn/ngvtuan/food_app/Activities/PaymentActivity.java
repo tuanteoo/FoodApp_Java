@@ -21,10 +21,11 @@ public class PaymentActivity extends AppCompatActivity {
         binding = ActivityPaymentBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        //Get Total Price
+        //Get Total Price int Cart
         int totalPrice = getIntent().getIntExtra("totalPrice",0);
         binding.pmTotalPrice.setText("$"+totalPrice);
 
+        // Payment bill
         binding.btnPaymentBill.setOnClickListener(v -> {
             String username = binding.editTextPaymentName.getText().toString().trim();
             String phonenumber = binding.editTextPaymentPhone.getText().toString().trim();
@@ -48,6 +49,7 @@ public class PaymentActivity extends AppCompatActivity {
             }
         });
 
+        //Button Cancel Payment
         binding.btnCancelOrder.setOnClickListener(v -> finish());
     }
 }

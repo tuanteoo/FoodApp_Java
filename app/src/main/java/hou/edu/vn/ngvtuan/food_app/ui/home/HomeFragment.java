@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
@@ -36,16 +37,16 @@ public class HomeFragment extends Fragment implements UpdateVerticalRec {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_home,container,false);
+        View view = inflater.inflate(R.layout.fragment_home,container,false);
 
-        imageButton = root.findViewById(R.id.img_btn_UserInfo);
+        imageButton = view.findViewById(R.id.img_btn_UserInfo);
         imageButton.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), UserInfoActivity.class);
             startActivity(intent);
         });
 
-        homeHorizontalRec = root.findViewById(R.id.home_hor_rec);
-        homeVerticalRec = root.findViewById(R.id.home_ver_rec);
+        homeHorizontalRec = view.findViewById(R.id.home_hor_rec);
+        homeVerticalRec = view.findViewById(R.id.home_ver_rec);
 
         //Horizontal RecyclerView
         homeHorModelList = new ArrayList<>();
@@ -69,7 +70,14 @@ public class HomeFragment extends Fragment implements UpdateVerticalRec {
         homeVerticalRec.setAdapter(homeVerAdapter);
         homeVerticalRec.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false));
 
-        return root;
+        EditText sFoodname = view.findViewById(R.id.search_foodName);
+        ImageButton btnSearch = view.findViewById(R.id.btn_findFood);
+
+        btnSearch.setOnClickListener(v -> {
+            String foodname = sFoodname.getText().toString().trim();
+        });
+
+        return view;
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -78,7 +86,5 @@ public class HomeFragment extends Fragment implements UpdateVerticalRec {
         homeVerAdapter = new HomeVerAdapter(getContext(),list);
         homeVerAdapter.notifyDataSetChanged();
         homeVerticalRec.setAdapter(homeVerAdapter);
-
     }
-
 }

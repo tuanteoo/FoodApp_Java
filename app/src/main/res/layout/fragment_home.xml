@@ -11,25 +11,41 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/editText4"
+        <RelativeLayout
+            android:id="@+id/searchFood"
             android:layout_width="340dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:layout_margin="5dp"
-            android:layout_marginTop="4dp"
             android:background="@drawable/search_bg"
-            android:drawableRight="@drawable/ic_baseline_search_24"
-            android:fontFamily="@font/amarante"
-            android:hint="Tìm Kiếm Món Ăn Của Bạn!"
-            android:padding="10dp"
-            android:textColor="@color/white"
-            android:textColorHint="#A9A9A9"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="Autofill,HardcodedText,LabelFor,MissingConstraints,RtlHardcoded,SpUsage,TextFields" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/search_foodName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/amarante"
+                android:hint="@string/searchyourfood"
+                android:textColor="@color/white"
+                android:textColorHint="#A9A9A9"
+                android:textSize="14sp"
+                android:background="@drawable/edittext_bg"
+                android:layout_centerVertical="true"
+                tools:ignore="Autofill,RelativeOverlap,TextFields" />
+
+            <ImageButton
+                android:id="@+id/btn_findFood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_baseline_search_24"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_alignParentEnd="true"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
+        </RelativeLayout>
+
 
         <ImageButton
             android:id="@+id/img_btn_UserInfo"
@@ -38,11 +54,11 @@
             android:background="@drawable/search_bg"
             android:padding="10dp"
             android:src="@drawable/ic_baseline_person_24"
-            app:layout_constraintBottom_toBottomOf="@+id/editText4"
+            app:layout_constraintBottom_toBottomOf="@+id/searchFood"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.4"
-            app:layout_constraintStart_toEndOf="@+id/editText4"
-            app:layout_constraintTop_toTopOf="@+id/editText4"
+            app:layout_constraintStart_toEndOf="@+id/searchFood"
+            app:layout_constraintTop_toTopOf="@+id/searchFood"
             tools:ignore="ContentDescription,MissingConstraints" />
 
         <TextView
@@ -54,8 +70,8 @@
             android:text="Xin Chào Bạn"
             android:textColor="@color/white"
             android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="@+id/editText4"
-            app:layout_constraintTop_toBottomOf="@+id/editText4"
+            app:layout_constraintStart_toStartOf="@+id/searchFood"
+            app:layout_constraintTop_toBottomOf="@+id/searchFood"
             tools:ignore="HardcodedText,MissingConstraints" />
 
         <TextView

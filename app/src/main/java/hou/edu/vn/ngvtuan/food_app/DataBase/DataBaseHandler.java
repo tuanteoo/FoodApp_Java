@@ -9,10 +9,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
-import hou.edu.vn.ngvtuan.food_app.models.CartModel;
 import hou.edu.vn.ngvtuan.food_app.models.BillModel;
+import hou.edu.vn.ngvtuan.food_app.models.CartModel;
 import hou.edu.vn.ngvtuan.food_app.models.UserModel;
 
 public class DataBaseHandler extends SQLiteOpenHelper {
@@ -26,8 +28,8 @@ public class DataBaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS user(username TEXT,phonenumber TEXT PRIMARY KEY,password TEXT,gender TEXT,dateofbirth TEXT )");
-        db.execSQL("CREATE TABLE IF NOT EXISTS orderlist(image BLOB,foodname TEXT PRIMARY KEY,rating TEXT,price INTEGER)");
-        db.execSQL("CREATE TABLE IF NOT EXISTS listBill(id INTEGER  PRIMARY KEY AUTOINCREMENT,username TEXT,phonenumber TEXT,address TEXT,price INTEGER )");
+        db.execSQL("CREATE TABLE IF NOT EXISTS orderlist(id INTEGER PRIMARY KEY AUTOINCREMENT, image BLOB,foodname TEXT,rating TEXT,quantity INTEGER,price INTEGER)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS listBill(id INTEGER PRIMARY KEY AUTOINCREMENT,username TEXT,phonenumber TEXT,address TEXT,price INTEGER,date TEXT )");
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -84,7 +86,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         }
         else return false;
     }
-    // Lấy thông tin User với Phonenumber
+    // Get data user by phone number
     public ArrayList<UserModel> getLogin_User(String phonenumber){
         ArrayList <UserModel> listUser = new ArrayList<>();
 
@@ -108,7 +110,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         }
         return listUser;
     }
-    // Update thông tin User
+    // Update data User
     public boolean updateDataUser(String old_phonenumber, String username, String gender, String dateofbirth,String new_phonenumber, String password) {
         // Get a writable instance of the SQLiteDatabase
         SQLiteDatabase db = this.getWritableDatabase();
@@ -129,12 +131,14 @@ public class DataBaseHandler extends SQLiteOpenHelper {
     }
 
     //Insert Data to Table OrderlistFood
-    public Boolean InsertDataToOrder(byte[] image, String foodName, String rating, Integer price) {
+    public Boolean InsertDataToOrder(byte[] image, String foodName, String rating,int quantity, int price) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
+
         values.put("image", image);
         values.put("foodname", foodName);
         values.put("rating", rating);
+        values.put("quantity", quantity);
         values.put("price", price);
 
         long result = db.insert("orderlist", null, values);
@@ -153,11 +157,13 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM orderlist", null);
         if (cursor.moveToFirst()) {
             do {
-                byte[] image = cursor.getBlob(0);
-                String foodName = cursor.getString(1);
-                String rating = cursor.getString(2);
-                int price = cursor.getInt(3);
-                CartModel order = new CartModel(image, foodName, rating, price);
+                int id = cursor.getInt(0);
+                byte[] image = cursor.getBlob(1);
+                String foodName = cursor.getString(2);
+                String rating = cursor.getString(3);
+                int quantity = cursor.getInt(4);
+                int price = cursor.getInt(5);
+                CartModel order = new CartModel(id,image,foodName,rating,quantity,price);
                 orderList.add(order);
             } while (cursor.moveToNext());
         }
@@ -165,12 +171,12 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         db.close();
         return orderList;
     }
-//    //Get Total Price
+    //Get Total Price
     public int getTotalPrice() {
         int totalPrice = 0;
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT SUM(price) FROM orderlist", null);
+        Cursor cursor = db.rawQuery("SELECT SUM(price*quantity) FROM orderlist", null);
         if (cursor.moveToFirst()) {
             totalPrice = cursor.getInt(0);
         }
@@ -192,6 +198,17 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         db.execSQL("DELETE FROM orderlist");
     }
 
+    //Update quantity and total price
+    public void updateQuantity(int id, int quantity) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put("quantity", quantity);
+
+        db.update("orderlist", values, "id = ?", new String[]{String.valueOf(id)});
+        db.close();
+    }
+
     //Insert Data to Table historyOrder
     public Boolean insertDataBill(String username, String phonenumber, String address, int price) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -201,6 +218,9 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         contentValues.put("phonenumber", phonenumber);
         contentValues.put("address", address);
         contentValues.put("price", price);
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        String currentDate = sdf.format(new Date());
+        contentValues.put("date", currentDate);
 
         long result = db.insert("listBill", null, contentValues);
 
@@ -222,8 +242,9 @@ public class DataBaseHandler extends SQLiteOpenHelper {
             String phonenumber = cursor.getString(2);
             String address = cursor.getString(3);
             int price = cursor.getInt(4);
+            String date = cursor.getString(5);
 
-            historyOrders.add(new BillModel(id, username, phonenumber, address, price));
+            historyOrders.add(new BillModel(id, username, phonenumber, address,date, price));
         }
         cursor.close();
         return historyOrders;
