@@ -41,7 +41,7 @@ public class MyCartFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));
 
         // Retrieve data from the orderlist table
-         dataBaseHandler = new DataBaseHandler(getContext());
+        dataBaseHandler = new DataBaseHandler(getContext());
         cartModelList = dataBaseHandler.getAllDataOrder();
         cartAdapter = new CartAdapter(cartModelList);
         recyclerView.setAdapter(cartAdapter);
@@ -49,6 +49,7 @@ public class MyCartFragment extends Fragment {
         // Display the total price
         totalPriceTextView = view.findViewById(R.id.TotalPrice);
         updateTotalPrice();
+
         // Set an OnItemDeletedListener on the adapter
         cartAdapter.setOnItemDeletedListener(this::updateTotalPrice);
 
@@ -66,6 +67,7 @@ public class MyCartFragment extends Fragment {
         });
         return view;
     }
+
     @SuppressLint("SetTextI18n")
     private void updateTotalPrice() {
         int totalPrice = dataBaseHandler.getTotalPrice();

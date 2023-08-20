@@ -97,7 +97,6 @@
                 android:layout_width="350sp"
                 android:layout_height="50sp"
                 android:layout_marginTop="2sp"
-                android:inputType="date"
                 android:background="@drawable/bg_edit_text"
                 android:paddingStart="10sp"
                 android:paddingEnd="0sp"

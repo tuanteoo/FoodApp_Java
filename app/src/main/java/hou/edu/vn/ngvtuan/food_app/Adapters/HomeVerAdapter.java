@@ -64,6 +64,7 @@ public class HomeVerAdapter extends RecyclerView.Adapter<HomeVerAdapter.ViewHold
             TextView bottomRating = sheetView.findViewById(R.id.bottom_rating);
             TextView bottomTiming = sheetView.findViewById(R.id.bottom_timing);
             TextView bottomPrice = sheetView.findViewById(R.id.bottom_price);
+            @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView bottomQuantity = sheetView.findViewById(R.id.bottom_quantity);
 
             bottomImg.setImageResource(mImage);
             bottomName.setText(mName);
@@ -71,6 +72,28 @@ public class HomeVerAdapter extends RecyclerView.Adapter<HomeVerAdapter.ViewHold
             bottomTiming.setText(mTiming);
             bottomPrice.setText(mPrice);
 
+            //Set default quantity = 1
+            final int[] quantity = {1};
+
+            //Get quantity Food Order
+            quantity[0] = Integer.parseInt(bottomQuantity.getText().toString());
+
+            //Button Add quantity
+            sheetView.findViewById(R.id.bottom_btnAdd).setOnClickListener(v2 ->{
+                quantity[0]++;
+                bottomQuantity.setText(String.valueOf(quantity[0]));
+
+            });
+
+            //Button Reduce quantity
+            sheetView.findViewById(R.id.bottom_btnReduce).setOnClickListener(v3 ->{
+                if (quantity[0] > 1) {
+                    quantity[0]--;
+                    bottomQuantity.setText(String.valueOf(quantity[0]));
+                }
+            });
+
+            //Button Add Food To Cart
             sheetView.findViewById(R.id.bottom_btn_addtoCart).setOnClickListener(v1 -> {
                 //Convert image to byte[]
                 Resources res = context.getResources();
@@ -78,9 +101,10 @@ public class HomeVerAdapter extends RecyclerView.Adapter<HomeVerAdapter.ViewHold
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 80, stream);
                 byte[] byteImage = stream.toByteArray();
+
                 // Call the InsertDataToOrder method here
                 dataBaseHandler = new DataBaseHandler(context);
-                boolean check = dataBaseHandler.InsertDataToOrder(byteImage,mName,mRating,Integer.parseInt(mPrice));
+                boolean check = dataBaseHandler.InsertDataToOrder(byteImage,mName,mRating, quantity[0],Integer.parseInt(mPrice));
                 if (check){
                    Toast.makeText(context, "Đã thêm vào giỏ hàng",Toast.LENGTH_SHORT).show();
                 }else {

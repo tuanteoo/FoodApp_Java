@@ -29,37 +29,37 @@
             android:layout_marginTop="10dp"
             tools:ignore="RtlHardcoded">
 
-            <TextView
-                android:id="@+id/cart_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/amarante"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:text="Tên"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText" />
-
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="4dp"
-                android:orientation="horizontal"
-                tools:ignore="UseCompoundDrawables">
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/cart_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/amarante"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="Tên"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="HardcodedText" />
 
                 <ImageView
                     android:id="@+id/imageView4"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
-                    android:layout_marginBottom="10dp"
                     android:src="@drawable/star"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="ContentDescription,MissingConstraints" />
+                    android:layout_marginStart="20dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/cart_name"
+                    app:layout_constraintTop_toTopOf="@+id/cart_name"
+                    app:layout_constraintStart_toEndOf="@+id/cart_name"
+                    tools:layout_editor_absoluteY="3dp"
+                    tools:ignore="ContentDescription,MissingConstraints"/>
 
                 <TextView
                     android:id="@+id/cart_rating"
@@ -72,19 +72,29 @@
                     app:layout_constraintTop_toTopOf="@+id/imageView4"
                     tools:ignore="HardcodedText,MissingConstraints" />
 
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+                tools:ignore="UseCompoundDrawables">
+
+
                 <ImageView
                     android:id="@+id/imageView6"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginLeft="80dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="5dp"
                     android:src="@drawable/dollarsymbol"
                     android:tint="@color/purple_500"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="ContentDescription,MissingConstraints,UseAppTint"
-                    tools:layout_editor_absoluteX="35dp" />
+                    tools:ignore="ContentDescription,MissingConstraints,UseAppTint" />
 
                 <TextView
                     android:id="@+id/cart_price"
@@ -99,11 +109,48 @@
                     app:layout_constraintTop_toTopOf="@+id/imageView6"
                     tools:ignore="HardcodedText,MissingConstraints" />
 
+                <ImageButton
+                    android:id="@+id/cart_btnReduce"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="30dp"
+                    android:src="@drawable/baseline_remove_24"
+                    android:background="@drawable/bg_buttonadd"
+                    app:layout_constraintBottom_toBottomOf="@+id/cart_price"
+                    app:layout_constraintStart_toEndOf="@+id/cart_price"
+                    app:layout_constraintTop_toTopOf="@+id/cart_price"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/cart_quantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/quantity"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/cart_btnReduce"
+                    app:layout_constraintStart_toEndOf="@+id/cart_btnReduce"
+                    app:layout_constraintTop_toTopOf="@+id/cart_btnReduce" />
+
+                <ImageButton
+                    android:id="@+id/cart_btnAdd"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/baseline_add_24"
+                    android:background="@drawable/bg_buttonadd"
+                    app:layout_constraintBottom_toBottomOf="@+id/cart_btnReduce"
+                    app:layout_constraintStart_toEndOf="@+id/cart_quantity"
+                    app:layout_constraintTop_toTopOf="@+id/cart_btnReduce"
+                    tools:ignore="ContentDescription" />
+
                 <Button
                     android:id="@+id/deleteFood"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:background="@drawable/baseline_delete_forever_24"
+                    android:layout_marginBottom="25dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

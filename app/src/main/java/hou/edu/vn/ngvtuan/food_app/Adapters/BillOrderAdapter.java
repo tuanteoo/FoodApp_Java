@@ -33,6 +33,7 @@ public class BillOrderAdapter extends RecyclerView.Adapter<BillOrderAdapter.View
     public void onBindViewHolder(@NonNull BillOrderAdapter.ViewHolder holder, int position) {
         BillModel billModel = billModels.get(position);
 
+        holder.date.setText(billModel.getDate());
         holder.idBill.setText(""+billModel.getId());
         holder.address.setText(billModel.getAddress());
         holder.totalPrice.setText(""+billModel.getTotalPrice());
@@ -44,10 +45,11 @@ public class BillOrderAdapter extends RecyclerView.Adapter<BillOrderAdapter.View
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView idBill,totalPrice,address;
+        TextView idBill,totalPrice,address,date;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            date = itemView.findViewById(R.id.his_dateOrder);
             idBill = itemView.findViewById(R.id.his_idBill);
             totalPrice = itemView.findViewById(R.id.his_totalPrice);
             address = itemView.findViewById(R.id.his_address);
