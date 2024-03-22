@@ -1,7 +1,6 @@
 package hou.edu.vn.ngvtuan.food_app.Activities;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,9 +38,6 @@ public class DetailedDailyMealActivity extends AppCompatActivity {
         //Fab_MovetoCart
         binding.btnMovetoCart.setOnClickListener(v -> {
 
-            //move to My Cart
-            Intent intent = new Intent(DetailedDailyMealActivity.this, LayoutMyCartActivity.class);
-            startActivity(intent);
         });
 
         //Add Food BreakFast

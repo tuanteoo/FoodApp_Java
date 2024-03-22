@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.PaymentFragment">
+
+    <RelativeLayout
+        android:id="@+id/contentTop"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="3dp"
+        android:layout_alignParentTop="true">
+
+        <ImageView
+            android:id="@+id/back_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/back"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/salma_medium"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:layout_centerHorizontal="true"
+            android:text="Xác Nhận Đơn Hàng"
+            android:textColor="@color/black"
+            tools:ignore="HardcodedText" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/contentTop"
+        android:layout_above="@id/relay_bottom">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="#F5F5F5"/>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
+                android:padding="10dp"
+                android:layout_below="@id/view">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="18dp"
+                    android:layout_height="23dp"
+                    android:src="@drawable/location"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/text1"
+                    android:layout_width="330dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_toEndOf="@id/imageView"
+                    android:text="Địa chỉ giao hàng"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    tools:ignore="HardcodedText" />
+
+                <ImageView
+                    android:id="@+id/moveto_delivery"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/next_black"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/address_deli"
+                    android:layout_width="330dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/text1"
+                    android:layout_alignStart="@id/text1"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"
+                    android:text="@string/address_" />
+
+                <TextView
+                    android:id="@+id/address_userName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/address_deli"
+                    android:layout_alignStart="@id/address_deli"
+                    android:layout_marginTop="10dp"
+                    android:text="Nguyễn Viết Tuấn"
+                    android:textColor="@color/black"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/address_phonenumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/address_deli"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toEndOf="@id/address_userName"
+                    android:text="012345678"
+                    android:textColor="@color/black"
+                    tools:ignore="HardcodedText" />
+            </RelativeLayout>
+
+            <View
+                android:layout_below="@id/relativeLayout2"
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="#F5F5F5"/>
+
+            <TextView
+                android:id="@+id/text_listFood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Danh Sách Món Ăn"
+                tools:ignore="HardcodedText,SpUsage"
+                android:layout_below="@id/view1"
+                android:textSize="16dp"
+                android:layout_marginTop="3dp"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/black"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_foodOrder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_listFood"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp" />
+
+            <View
+                android:id="@+id/view14"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F5F5F5"
+                android:layout_below="@+id/list_foodOrder"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView2"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@id/view14"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                app:cardCornerRadius="15dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tiền món ăn"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:id="@+id/subtotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="10dp"
+                        android:text="18"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toStartOf="@id/subtotal"
+                        android:text="@string/dollar"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        tools:ignore="RelativeOverlap" />
+
+                    <View
+                        android:id="@+id/view11"
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:layout_below="@id/textView13"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="#F5F5F5" />
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view11"
+                        android:text="Phí giao hàng"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:id="@+id/tax_delivery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view11"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginTop="2dp"
+                        android:text="8"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view11"
+                        android:layout_toStartOf="@id/tax_delivery"
+                        android:text="@string/dollar"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:id="@+id/view12"
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:layout_below="@id/tax_delivery"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="#F5F5F5" />
+
+                    <TextView
+                        android:id="@+id/textView15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/view12"
+                        android:text="Thuế"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:id="@+id/tax"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view12"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="10dp"
+                        android:text="1"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:layout_marginTop="2dp"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/view12"
+                        android:layout_toStartOf="@+id/tax"
+                        android:text="@string/dollar"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:id="@+id/view13"
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:layout_below="@id/tax"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="#F5F5F5" />
+
+                    <TextView
+                        android:id="@+id/textView16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/view13"
+                        android:text="Tổng cộng"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:id="@+id/totalPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/view13"
+                        android:layout_alignParentEnd="true"
+                        android:text="27"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginTop="2dp"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/view13"
+                        android:layout_toStartOf="@id/totalPrice"
+                        android:text="@string/dollar"
+                        android:textSize="20sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <View
+                android:id="@+id/view15"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F5F5F5"
+                android:layout_below="@+id/cardView2"/>
+
+            <RelativeLayout
+                android:id="@+id/relay_note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/view15"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp">
+
+                <ImageView
+                    android:id="@+id/image_note"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/note"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ghi chú"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="7dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:layout_toEndOf="@id/image_note"
+                    tools:ignore="HardcodedText" />
+
+                <EditText
+                    android:id="@+id/note"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:layout_alignParentEnd="true"
+                    android:inputType="text"
+                    tools:ignore="Autofill,LabelFor" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F5F5F5"
+                android:layout_below="@+id/relay_note"/>
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/relay_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:id="@+id/text_paymentMethod"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phương Thức Thanh Toán"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginStart="15dp"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/pm_internetbk"
+            android:autofillHints="postalAddress"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:textSize="18sp"
+            android:text="Internet Banking"
+            android:gravity="center"
+            android:textColor="@color/purple_500"
+            android:background="@drawable/btn_bg_design_red"
+            android:layout_below="@id/text_paymentMethod"
+            android:layout_marginTop="5dp"
+            tools:ignore="HardcodedText"
+            android:layout_marginStart="30dp"/>
+
+        <TextView
+            android:id="@+id/pm_cash"
+            android:autofillHints="postalAddress"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:textSize="18sp"
+            android:text="Tiền Mặt"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:background="@drawable/btn_bg_design"
+            android:layout_below="@id/text_paymentMethod"
+            android:layout_marginTop="5sp"
+            tools:ignore="HardcodedText"
+            android:layout_toEndOf="@id/pm_internetbk"
+            android:layout_marginStart="30dp"/>
+
+        <Button
+            android:id="@+id/btn_PaymentOrder"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_bg_design"
+            android:padding="14dp"
+            android:text="Thanh Toán"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            tools:ignore="HardcodedText"
+            android:layout_gravity="center"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

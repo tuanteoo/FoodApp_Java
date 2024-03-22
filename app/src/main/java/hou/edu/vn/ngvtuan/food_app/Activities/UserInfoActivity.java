@@ -1,18 +1,26 @@
 package hou.edu.vn.ngvtuan.food_app.Activities;
 
 import android.os.Bundle;
-import android.widget.Toast;
+import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import hou.edu.vn.ngvtuan.food_app.DataBase.DataBaseHandler;
-import hou.edu.vn.ngvtuan.food_app.MainActivity;
+import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Objects;
+
 import hou.edu.vn.ngvtuan.food_app.databinding.ActivityUserInfoBinding;
 
 public class UserInfoActivity extends AppCompatActivity {
 
     ActivityUserInfoBinding binding;
-    private DataBaseHandler dataBaseHandler;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -20,47 +28,31 @@ public class UserInfoActivity extends AppCompatActivity {
         binding = ActivityUserInfoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        dataBaseHandler = new DataBaseHandler(this);
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        String userId = Objects.requireNonNull(auth.getCurrentUser()).getUid();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("userInfor").child(userId);
 
-        binding.userName.setText(MainActivity.userModel.getUsername());
-        binding.userGender.setText(MainActivity.userModel.getGender());
-        binding.userDateofbirth.setText(MainActivity.userModel.getDateOfBirth());
-        binding.userPhonenumber.setText(MainActivity.userModel.getPhonenumber());
-        binding.userPassword.setText(MainActivity.userModel.getPassword());
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String UrlPhoto = snapshot.child("userAvatar").getValue(String.class);
+                String userName = snapshot.child("userName").getValue(String.class);
+                String userEmail = snapshot.child("userEmail").getValue(String.class);
 
-        //Button UpdateDataUser
-        binding.btnUpdate.setOnClickListener(v -> {
-            // Get the old phone number from the userModel object
-            String oldPhoneNumber = MainActivity.userModel.getPhonenumber();
+                Glide.with(UserInfoActivity.this).load(UrlPhoto).into(binding.userAvatar);
+                binding.userEmail.setText(userEmail);
+                binding.userEmail.setEnabled(false);
+                binding.userName.setText(userName);
+            }
 
-            // Get the new values for the user data from the TextViews
-            String newPhoneNumber = binding.userPhonenumber.getText().toString();
-            String username = binding.userName.getText().toString();
-            String gender = binding.userGender.getText().toString();
-            String dateofbirth = binding.userDateofbirth.getText().toString();
-            String password = binding.userPassword.getText().toString();
-
-            // Update the user data in the database
-            boolean success = dataBaseHandler.updateDataUser(oldPhoneNumber, username, gender, dateofbirth, newPhoneNumber, password);
-
-            // Check if the update was successful
-            if (success) {
-                // The update was successful
-                Toast.makeText(UserInfoActivity.this, "Cập nhật thông tin thành công!", Toast.LENGTH_SHORT).show();
-
-                // Update the userModel object with the new values
-                MainActivity.userModel.setPhonenumber(newPhoneNumber);
-                MainActivity.userModel.setUsername(username);
-                MainActivity.userModel.setGender(gender);
-                MainActivity.userModel.setDateOfBirth(dateofbirth);
-                MainActivity.userModel.setPassword(password);
-            } else {
-                // The update failed
-                Toast.makeText(UserInfoActivity.this, "Cập nhật thông tin thất bại!", Toast.LENGTH_SHORT).show();
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("UserInforActivity","Get error when get data User");
             }
         });
-
-        //Button Cancel
-        binding.btnCancel.setOnClickListener(v -> finish());
+       //Button back home
+        binding.backHome.setOnClickListener(v -> {
+            finish();
+        });
     }
 }

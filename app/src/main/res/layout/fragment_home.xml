@@ -5,109 +5,195 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment"
+    android:id="@+id/fragment_home"
     android:background="@color/mediumGray">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <RelativeLayout
-            android:id="@+id/searchFood"
-            android:layout_width="340dp"
-            android:layout_height="45dp"
-            android:layout_margin="5dp"
-            android:background="@drawable/search_bg"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <EditText
-                android:id="@+id/search_foodName"
+            <TextView
+                android:id="@+id/textView0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:fontFamily="@font/amarante"
-                android:hint="@string/searchyourfood"
-                android:textColor="@color/white"
-                android:textColorHint="#A9A9A9"
-                android:textSize="14sp"
-                android:background="@drawable/edittext_bg"
-                android:layout_centerVertical="true"
-                tools:ignore="Autofill,RelativeOverlap,TextFields" />
+                android:fontFamily="@font/salma_medium"
+                android:text="@string/delivery_address"
+                android:textColor="@color/lightGray"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <RelativeLayout
+                android:id="@+id/relay_address"
+                android:layout_width="400dp"
+                android:layout_height="35dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView0"
+                tools:ignore="TouchTargetSizeCheck">
+
+                <ImageView
+                    android:id="@+id/icon_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="0dp"
+                    android:src="@drawable/location"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/home_address"
+                    android:layout_width="330dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_toEndOf="@+id/icon_location"
+                    android:fontFamily="@font/salma_medium"
+                    android:gravity="center_vertical"
+                    android:text="Không có địa chỉ giao hàng"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    tools:ignore="HardcodedText" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_toEndOf="@+id/home_address"
+                    android:src="@drawable/arrow"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:ignore="ContentDescription,HardcodedText" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/searchFood"
+                android:layout_width="340dp"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/search_bg"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/relay_address">
+
+                <EditText
+                    android:id="@+id/search_foodName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/edittext_bg"
+                    android:fontFamily="@font/salma_medium"
+                    android:hint="@string/searchyourfood"
+                    android:textColor="@color/white"
+                    android:textColorHint="#A9A9A9"
+                    android:textSize="14sp"
+                    tools:ignore="Autofill,RelativeOverlap,TextFields,TouchTargetSizeCheck" />
+
+                <ImageButton
+                    android:id="@+id/btn_findFood"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/ic_baseline_search_24"
+                    tools:ignore="ContentDescription,RtlHardcoded,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+            </RelativeLayout>
+
 
             <ImageButton
-                android:id="@+id/btn_findFood"
+                android:id="@+id/img_btn_UserInfo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/search_bg"
+                android:padding="10dp"
+                android:src="@drawable/ic_baseline_person_24"
+                app:layout_constraintBottom_toBottomOf="@+id/searchFood"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.4"
+                app:layout_constraintStart_toEndOf="@+id/searchFood"
+                app:layout_constraintTop_toTopOf="@+id/searchFood"
+                tools:ignore="ContentDescription,MissingConstraints,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+            <TextView
+                android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/ic_baseline_search_24"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="8dp"
-                android:layout_alignParentEnd="true"
-                tools:ignore="ContentDescription,RtlHardcoded" />
+                android:layout_margin="3dp"
+                android:fontFamily="@font/salma_medium"
+                android:text="Xin Chào Bạn"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="@+id/searchFood"
+                app:layout_constraintTop_toBottomOf="@+id/searchFood"
+                tools:ignore="HardcodedText,MissingConstraints" />
 
-        </RelativeLayout>
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/salma_medium"
+                android:text="Bạn Muốn Ăn Gì ?"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/textView7"
+                app:layout_constraintTop_toBottomOf="@+id/textView7"
+                tools:ignore="HardcodedText,MissingConstraints,RtlHardcoded" />
 
 
-        <ImageButton
-            android:id="@+id/img_btn_UserInfo"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:background="@drawable/search_bg"
-            android:padding="10dp"
-            android:src="@drawable/ic_baseline_person_24"
-            app:layout_constraintBottom_toBottomOf="@+id/searchFood"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.4"
-            app:layout_constraintStart_toEndOf="@+id/searchFood"
-            app:layout_constraintTop_toTopOf="@+id/searchFood"
-            tools:ignore="ContentDescription,MissingConstraints" />
+            <com.smarteist.autoimageslider.SliderView
+                android:id="@+id/slider"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView8"
+                app:sliderAnimationDuration="600"
+                app:sliderAutoCycleDirection="back_and_forth"
+                app:sliderIndicatorAnimationDuration="600"
+                app:sliderIndicatorEnabled="true"
+                app:sliderIndicatorGravity="center_horizontal|bottom"
+                app:sliderIndicatorMargin="15dp"
+                app:sliderIndicatorOrientation="horizontal"
+                app:sliderIndicatorPadding="3dp"
+                app:sliderIndicatorRadius="2dp"
+                app:sliderIndicatorSelectedColor="#5A5A5A"
+                app:sliderIndicatorUnselectedColor="#FFF"
+                app:sliderScrollTimeInSec="1" />
 
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:fontFamily="@font/amarante"
-            android:text="Xin Chào Bạn"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="@+id/searchFood"
-            app:layout_constraintTop_toBottomOf="@+id/searchFood"
-            tools:ignore="HardcodedText,MissingConstraints" />
 
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/amarante"
-            android:text="Bạn Muốn Ăn Gì ?"
-            android:textSize="12sp"
-            android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="@+id/textView7"
-            app:layout_constraintTop_toBottomOf="@+id/textView7"
-            tools:ignore="HardcodedText,MissingConstraints,RtlHardcoded" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/home_hor_rec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="6dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="6dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.666"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/slider" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/home_hor_rec"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="6dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView8"
-            tools:ignore="MissingConstraints"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/home_ver_rec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/home_hor_rec" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/home_ver_rec"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="6dp"
-            android:layout_marginTop="6dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/home_hor_rec"
-            tools:ignore="MissingConstraints" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>

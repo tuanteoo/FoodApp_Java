@@ -1,4 +1,4 @@
-package hou.edu.vn.ngvtuan.food_app.Adapters;
+package hou.edu.vn.ngvtuan.food_app.Interface;
 
 import java.util.ArrayList;
 

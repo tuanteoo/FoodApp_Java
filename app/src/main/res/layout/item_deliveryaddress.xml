@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/relative_item_deli"
+    android:layout_marginTop="8dp">
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="18dp"
+            android:layout_height="23dp"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/bookmark_6340527"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/imageView1"
+            android:text="Đã Lưu"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/item_edit_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:gravity="end"
+            android:text="Sửa"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="4dp"
+            android:textColor="#87CEFA"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/item_deli_address"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text2"
+            android:layout_alignStart="@id/text2"
+            android:layout_marginTop="10dp"
+            android:text="@string/address_" />
+
+        <TextView
+            android:id="@+id/item_deli_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/item_deli_address"
+            android:layout_alignStart="@id/item_deli_address"
+            android:layout_marginTop="10dp"
+            android:text="Nguyễn Viết Tuấn"
+            android:textColor="@color/black"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/item_deli_phoneNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_deli_address"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/item_deli_username"
+            android:text="012345678"
+            android:textColor="@color/black"
+            tools:ignore="HardcodedText" />
+
+        <View
+            android:layout_width="380dp"
+            android:layout_height="3dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/item_deli_username"
+            android:background="#F5F5F5"/>
+
+</RelativeLayout>

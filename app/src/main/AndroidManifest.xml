@@ -2,21 +2,28 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/food_logo"
-        android:label="FoodApp"
         android:roundIcon="@drawable/food_logo"
         android:supportsRtl="true"
+        android:label=""
+        tools:replace="android:label"
         android:theme="@style/Theme.Food_App"
         tools:targetApi="31">
         <activity
-            android:name=".Activities.LayoutBillActivity"
+            android:name=".Activities.AddAddressActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.PaymentActivity"
+            android:name=".Activities.DeliveryAddressActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.LayoutMyCartActivity"
@@ -46,7 +53,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="false"
-            android:label="Food App"
             android:theme="@style/Theme.Food_App.NoActionBar"
             tools:ignore="RedundantLabel" />
 
