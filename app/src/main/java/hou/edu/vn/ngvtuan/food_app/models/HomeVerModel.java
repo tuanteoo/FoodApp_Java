@@ -1,55 +1,76 @@
 package hou.edu.vn.ngvtuan.food_app.models;
 
 public class HomeVerModel {
-    int image;
-    String name,timing,rating;
-    String price;
+    String imageFood,nameFood,descFood,timeCooking,typeFood;
 
-    public HomeVerModel(int image, String name, String timing, String rating, String price) {
-        this.image = image;
-        this.name = name;
-        this.timing = timing;
-        this.rating = rating;
-        this.price = price;
+    int priceFood,quantitySold;
+
+    public HomeVerModel() {
     }
 
-    public int getImage() {
-        return image;
+    public HomeVerModel(String imageFood, String nameFood, String descFood, String timeCooking, String typeFood, int priceFood, int quantitySold) {
+        this.imageFood = imageFood;
+        this.nameFood = nameFood;
+        this.descFood = descFood;
+        this.timeCooking = timeCooking;
+        this.typeFood = typeFood;
+        this.priceFood = priceFood;
+        this.quantitySold = quantitySold;
     }
 
-    public void setImage(int image) {
-        this.image = image;
+    public String getImageFood() {
+        return imageFood;
     }
 
-    public String getName() {
-        return name;
+    public void setImageFood(String imageFood) {
+        this.imageFood = imageFood;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getNameFood() {
+        return nameFood;
     }
 
-    public String getTiming() {
-        return timing;
+    public void setNameFood(String nameFood) {
+        this.nameFood = nameFood;
     }
 
-    public void setTiming(String timing) {
-        this.timing = timing;
+    public String getDescFood() {
+        return descFood;
     }
 
-    public String getRating() {
-        return rating;
+    public void setDescFood(String descFood) {
+        this.descFood = descFood;
     }
 
-    public void setRating(String rating) {
-        this.rating = rating;
+    public String getTimeCooking() {
+        return timeCooking;
     }
 
-    public String getPrice() {
-        return price;
+    public void setTimeCooking(String timeCooking) {
+        this.timeCooking = timeCooking;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public String getTypeFood() {
+        return typeFood;
+    }
+
+    public void setTypeFood(String typeFood) {
+        this.typeFood = typeFood;
+    }
+
+    public int getPriceFood() {
+        return priceFood;
+    }
+
+    public void setPriceFood(int priceFood) {
+        this.priceFood = priceFood;
+    }
+
+    public int getQuantitySold() {
+        return quantitySold;
+    }
+
+    public void setQuantitySold(int quantitySold) {
+        this.quantitySold = quantitySold;
     }
 }

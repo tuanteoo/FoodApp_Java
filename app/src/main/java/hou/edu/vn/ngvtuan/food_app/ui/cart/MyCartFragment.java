@@ -1,35 +1,38 @@
 package hou.edu.vn.ngvtuan.food_app.ui.cart;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-import hou.edu.vn.ngvtuan.food_app.Activities.PaymentActivity;
+import java.util.Objects;
+
 import hou.edu.vn.ngvtuan.food_app.Adapters.CartAdapter;
-import hou.edu.vn.ngvtuan.food_app.DataBase.DataBaseHandler;
 import hou.edu.vn.ngvtuan.food_app.R;
 import hou.edu.vn.ngvtuan.food_app.models.CartModel;
 
 public class MyCartFragment extends Fragment {
-    ArrayList<CartModel> cartModelList;
+    DatabaseReference databaseReference;
     RecyclerView recyclerView;
     CartAdapter cartAdapter;
-    private DataBaseHandler dataBaseHandler;
-    TextView totalPriceTextView;
+
     public MyCartFragment() {
     }
+
     @SuppressLint({"MissingInflatedId", "SetTextI18n", "NotifyDataSetChanged"})
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,37 +43,44 @@ public class MyCartFragment extends Fragment {
         recyclerView = view.findViewById(R.id.cart_rec);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));
 
-        // Retrieve data from the orderlist table
-        dataBaseHandler = new DataBaseHandler(getContext());
-        cartModelList = dataBaseHandler.getAllDataOrder();
-        cartAdapter = new CartAdapter(cartModelList);
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        String userId = Objects.requireNonNull(auth.getCurrentUser()).getUid();
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Cart").child(userId);
+
+        FirebaseRecyclerOptions<CartModel> options =
+                new FirebaseRecyclerOptions.Builder<CartModel>()
+                        .setQuery(databaseReference, CartModel.class)
+                        .build();
+
+        cartAdapter = new CartAdapter(options);
         recyclerView.setAdapter(cartAdapter);
-
-        // Display the total price
-        totalPriceTextView = view.findViewById(R.id.TotalPrice);
-        updateTotalPrice();
-
-        // Set an OnItemDeletedListener on the adapter
-        cartAdapter.setOnItemDeletedListener(this::updateTotalPrice);
 
         Button btnMakeOrder = view.findViewById(R.id.make_oder);
         btnMakeOrder.setOnClickListener(v -> {
-            if (cartModelList.isEmpty()) {
-                Toast.makeText(getContext(),"Giỏ hàng trống,vui lòng đặt đồ ăn!",Toast.LENGTH_SHORT).show();
-            } else {
-                // Pass the total price to the PaymentActivity
-                int totalPrice = dataBaseHandler.getTotalPrice();
-                Intent intent = new Intent(getActivity(), PaymentActivity.class);
-                intent.putExtra("totalPrice", totalPrice);
-                startActivity(intent);
+            if (options.getSnapshots().isEmpty()){
+                Toast.makeText(getContext(),"Giỏ hàng của bạn đang trống!",Toast.LENGTH_SHORT).show();
+            }else {
+                Navigation.findNavController(requireView()).navigate(R.id.nav_payment);
             }
         });
+
+        ImageView btnBackHome = view.findViewById(R.id.back_home);
+        btnBackHome.setOnClickListener(v -> {
+            Navigation.findNavController(requireView()).navigate(R.id.nav_home);
+        });
+
         return view;
     }
 
-    @SuppressLint("SetTextI18n")
-    private void updateTotalPrice() {
-        int totalPrice = dataBaseHandler.getTotalPrice();
-        totalPriceTextView.setText(""+totalPrice);
+    @Override
+    public void onStart() {
+        super.onStart();
+        cartAdapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        cartAdapter.stopListening();
     }
 }

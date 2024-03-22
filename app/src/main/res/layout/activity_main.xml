@@ -28,14 +28,15 @@
 
         <Button
             android:id="@+id/btn_Logout"
-            android:layout_margin="10dp"
-            android:layout_width="match_parent"
+            android:layout_width="230dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:background="@drawable/btn_bg_design"
+            android:layout_marginBottom="15dp"
             android:text="Đăng Xuất"
-            android:layout_gravity="bottom"
             android:textAllCaps="false"
             android:textStyle="bold"
-            android:padding="15dp"
             tools:ignore="HardcodedText" />
     </com.google.android.material.navigation.NavigationView>
+
 </androidx.drawerlayout.widget.DrawerLayout>

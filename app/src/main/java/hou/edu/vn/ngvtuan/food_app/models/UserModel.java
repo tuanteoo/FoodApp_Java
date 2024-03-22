@@ -1,32 +1,53 @@
 package hou.edu.vn.ngvtuan.food_app.models;
 
-import java.io.Serializable;
+import android.graphics.Bitmap;
 
-public class UserModel implements Serializable {
+public class UserModel  {
+    Bitmap avatar;
+    String name,phonenumber,email,gender,dateOfBirth;
 
-    private String username;
-    private String gender;
-    private String dateOfBirth;
-    private String phonenumber;
-    private String password;
-
-    public UserModel(String username, String gender, String dateOfBirth, String phonenumber, String password) {
-        this.username = username;
+    public UserModel(Bitmap avatar, String name, String phonenumber, String email, String gender, String dateOfBirth) {
+        this.avatar = avatar;
+        this.name = name;
+        this.phonenumber = phonenumber;
+        this.email = email;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
-        this.phonenumber = phonenumber;
-        this.password = password;
     }
 
     public UserModel() {
     }
 
-    public String getUsername() {
-        return username;
+    public Bitmap getAvatar() {
+        return avatar;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setAvatar(Bitmap avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getGender() {
@@ -44,21 +65,4 @@ public class UserModel implements Serializable {
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-
-    public String getPhonenumber() {
-        return phonenumber;
-    }
-
-    public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
 }

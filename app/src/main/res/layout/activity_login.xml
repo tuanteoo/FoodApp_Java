@@ -14,16 +14,20 @@
         android:foreground="@drawable/foreground_design"
         android:scaleType="centerCrop"
         android:src="@drawable/bg4"
-        tools:ignore="ContentDescription"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="-36dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/lobster"
-        android:text="My Restaurant App"
+        android:text="Yummy Food"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="33sp"
@@ -32,75 +36,91 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.199"
+        app:layout_constraintVertical_bias="0.15"
         tools:ignore="HardcodedText,MissingConstraints" />
 
+
     <TextView
-        android:id="@+id/textView5"
-        android:layout_width="match_parent"
+        android:id="@+id/PhoneNumber"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Đăng Nhập"
-        android:textAlignment="center"
+        android:gravity="left"
+        android:text="@string/phonenumber"
         android:textColor="#FBFBFB"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold"
+        android:layout_marginTop="70dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintWidth_percent=".8"
         tools:ignore="HardcodedText,MissingConstraints" />
 
+    <TextView
+        android:id="@+id/tview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:text="Mật Khẩu"
+        android:textColor="#FBFBFB"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/log_PhoneNumber"
+        app:layout_constraintWidth_percent=".8"
+        tools:ignore="HardcodedText,MissingConstraints" />
 
     <EditText
         android:id="@+id/log_PhoneNumber"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#CCCCCC"
-        android:drawableLeft="@drawable/baseline_phone_iphone_24"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/bg_edittext"
+        android:drawableLeft="@drawable/padded_icon"
         android:drawablePadding="13dp"
-        android:hint="Số Điện Thoại"
+        android:hint="0123456789"
+        android:textColorHint="#696969"
         android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintEnd_toEndOf="@+id/PhoneNumber"
+        app:layout_constraintStart_toStartOf="@+id/PhoneNumber"
+        app:layout_constraintTop_toBottomOf="@+id/PhoneNumber"
         app:layout_constraintWidth_percent=".8"
-        android:layout_marginTop="80dp"
         tools:ignore="Autofill,HardcodedText,MissingConstraints,RtlHardcoded,TextFields" />
 
     <EditText
         android:id="@+id/log_Password"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:backgroundTint="#CCCCCC"
-        android:drawableLeft="@drawable/baseline_lock_24"
+        android:layout_height="50dp"
+        android:background="@drawable/bg_edittext"
+        android:drawableLeft="@drawable/padded_icon_pw"
         android:drawablePadding="13dp"
-        android:hint="Mật Khẩu"
+        android:hint="**********"
+        android:inputType="textPassword"
         android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:layout_marginTop="10dp"
+        android:textColorHint="#696969"
+        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/log_PhoneNumber"
+        app:layout_constraintTop_toBottomOf="@+id/tview"
         app:layout_constraintWidth_percent=".8"
         tools:ignore="Autofill,HardcodedText,MissingConstraints,RtlHardcoded,TextFields" />
 
     <Button
         android:id="@+id/btn_Login"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
+        android:layout_marginTop="25dp"
         android:background="@drawable/btn_bg_design"
-        android:padding="14dp"
         android:text="Đăng Nhập"
         android:textAllCaps="false"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@+id/log_Password"
+        app:layout_constraintStart_toStartOf="@+id/log_Password"
         app:layout_constraintTop_toBottomOf="@+id/log_Password"
-        app:layout_constraintWidth_percent=".8"
-        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintWidth_percent=".6"
         tools:ignore="HardcodedText,InvalidId,MissingConstraints,OnClick" />
 
     <TextView
@@ -116,6 +136,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias=".3"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias=".1"
         app:layout_constraintTop_toBottomOf="@+id/btn_Login"
         tools:ignore="HardcodedText,MissingConstraints" />
 
@@ -128,10 +149,61 @@
         android:textColor="@color/purple_500"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/textView6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/btn_Login"
         app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toEndOf="@+id/textView6"
+        app:layout_constraintTop_toTopOf="@+id/textView6"
         tools:ignore="HardcodedText,MissingConstraints" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/btn_Login"
+        app:layout_constraintStart_toStartOf="@+id/btn_Login"
+        app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="15dp"
+            android:layout_weight="1"
+            android:background="#C0C0C0" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/orLoginwith"
+            android:textColor="#C0C0C0"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="15dp"
+            android:layout_weight="1"
+            android:background="#C0C0C0" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnL_LoginwGG"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:background="@drawable/btn_bg_design"
+        android:text="Login with Google"
+        android:textSize="15sp"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:drawableLeft="@drawable/padded_icgoogle"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/btn_Login"
+        app:layout_constraintStart_toStartOf="@+id/btn_Login"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        tools:ignore="HardcodedText,InvalidId,MissingConstraints,OnClick,RtlHardcoded" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

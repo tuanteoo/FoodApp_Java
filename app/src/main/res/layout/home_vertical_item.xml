@@ -13,10 +13,10 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/ver_img"
+            android:id="@+id/item_ver_image"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:scaleType="center"
+            android:scaleType="centerCrop"
             android:src="@drawable/dinner"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -33,18 +33,17 @@
             android:background="@drawable/round_bg"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
             tools:ignore="MissingConstraints">
 
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/item_ver_nameFood"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/amarante"
+                android:fontFamily="@font/salma_medium"
                 android:text="@string/product_name"
                 android:textColor="@color/white"
                 android:textSize="18sp"
@@ -58,48 +57,49 @@
                 tools:ignore="HardcodedText" />
 
             <ImageView
-                android:id="@+id/ver_img2"
-                android:layout_width="70dp"
-                android:layout_height="40dp"
-                android:layout_marginRight="25dp"
-                android:layout_marginBottom="25dp"
-                android:src="@drawable/ratingbar"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/imageView6"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/sold"
+                android:layout_marginStart="200dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+                app:layout_constraintStart_toEndOf="@+id/textView12"
+                app:layout_constraintTop_toTopOf="@+id/imageView5"
                 tools:ignore="ContentDescription,RtlHardcoded" />
 
             <TextView
-                android:id="@+id/rating"
+                android:id="@+id/item_ver_quantitySold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:text="@string/rating"
+                android:layout_marginStart="3dp"
+                android:text="150"
                 android:textColor="@color/white"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/ver_img2"
-                app:layout_constraintEnd_toStartOf="@+id/ver_img2"
-                app:layout_constraintTop_toTopOf="@+id/ver_img2"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+                app:layout_constraintStart_toEndOf="@id/imageView6"
+                app:layout_constraintTop_toTopOf="@+id/imageView6"
                 tools:ignore="HardcodedText,RtlHardcoded,UnknownId" />
 
             <ImageView
                 android:id="@+id/imageView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_marginLeft="30dp"
                 android:src="@drawable/ic_baseline_access_time_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/name"
+                app:layout_constraintTop_toBottomOf="@+id/item_ver_nameFood"
                 tools:ignore="ContentDescription,RtlHardcoded" />
 
             <TextView
-                android:id="@+id/timing"
+                android:id="@+id/item_ver_timeCooking"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="@string/time"
+                android:layout_marginLeft="3dp"
+                android:text="10"
                 android:textColor="@color/white"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView5"
                 app:layout_constraintStart_toEndOf="@+id/imageView5"
@@ -107,16 +107,29 @@
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
             <TextView
-                android:id="@+id/price"
+                android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
+                android:layout_marginStart="2dp"
+                android:text="min"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/item_ver_timeCooking"
+                app:layout_constraintStart_toEndOf="@+id/item_ver_timeCooking"
+                app:layout_constraintTop_toTopOf="@+id/item_ver_timeCooking"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/item_ver_priceFood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="45"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/textView"
-                app:layout_constraintStart_toEndOf="@+id/textView"
+                app:layout_constraintEnd_toEndOf="@+id/item_ver_quantitySold"
                 app:layout_constraintTop_toTopOf="@+id/textView"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
@@ -128,13 +141,13 @@
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/timing"
-                app:layout_constraintStart_toStartOf="@+id/rating"
-                app:layout_constraintTop_toTopOf="@+id/timing"
+                app:layout_constraintBottom_toBottomOf="@+id/item_ver_nameFood"
+                app:layout_constraintEnd_toStartOf="@+id/item_ver_priceFood"
+                app:layout_constraintTop_toTopOf="@+id/item_ver_nameFood"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
     
 </androidx.cardview.widget.CardView>

@@ -1,12 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">Food_App</string>
+    <string name="app_name">Yummy Food</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-
     <string name="menu_home">Trang Chủ</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
@@ -32,5 +31,18 @@
     <string name="less">-</string>
     <string name="quantity">1</string>
     <string name="add">+</string>
+    <string name="phonenumber">Số Điện Thoại</string>
+    <string name="orLoginwith">Hoặc đăng nhập với</string>
+    <string name="delivery_address">Giao đến:</string>
+    <string name="address_">96 Phố Định Công, Phương Liệt, Thanh Xuân, Hà Nội</string>
+    <string name="web_client_id">389343952827-8av950cbrrpu601qbtn0g94fo9hteo7d.apps.googleusercontent.com</string>
 
+    <string-array name="planets_array">
+        <item>Pizza</item>
+        <item>Hamburger</item>
+        <item>Fries</item>
+        <item>Mars</item>
+        <item>Ice Cream</item>
+        <item>Sandwich</item>
+    </string-array>
 </resources>

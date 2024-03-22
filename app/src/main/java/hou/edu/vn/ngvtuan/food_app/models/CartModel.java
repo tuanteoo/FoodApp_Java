@@ -1,50 +1,50 @@
 package hou.edu.vn.ngvtuan.food_app.models;
 
 public class CartModel {
-    int id;
-    byte[] image;
-    String name, rating;
-    int quantity, price;
+    String imageFood,nameFood;
+    int priceFood,price_quantity,quantity;
 
-    public CartModel(int id,byte[] image, String name, String rating, int quantity, int price) {
-        this.id = id;
-        this.image = image;
-        this.name = name;
-        this.rating = rating;
+    public CartModel() {
+    }
+
+    public CartModel(String imageFood, String nameFood, int priceFood, int price_quantity, int quantity) {
+        this.imageFood = imageFood;
+        this.nameFood = nameFood;
+        this.priceFood = priceFood;
+        this.price_quantity = price_quantity;
         this.quantity = quantity;
-        this.price = price;
     }
 
-    public int getId() {
-        return id;
+    public String getImageFood() {
+        return imageFood;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setImageFood(String imageFood) {
+        this.imageFood = imageFood;
     }
 
-    public byte[] getImage() {
-        return image;
+    public String getNameFood() {
+        return nameFood;
     }
 
-    public void setImage(byte[] image) {
-        this.image = image;
+    public void setNameFood(String nameFood) {
+        this.nameFood = nameFood;
     }
 
-    public String getName() {
-        return name;
+    public int getPriceFood() {
+        return priceFood;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPriceFood(int priceFood) {
+        this.priceFood = priceFood;
     }
 
-    public String getRating() {
-        return rating;
+    public int getPrice_quantity() {
+        return price_quantity;
     }
 
-    public void setRating(String rating) {
-        this.rating = rating;
+    public void setPrice_quantity(int price_quantity) {
+        this.price_quantity = price_quantity;
     }
 
     public int getQuantity() {
@@ -55,11 +55,4 @@ public class CartModel {
         this.quantity = quantity;
     }
 
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
 }
