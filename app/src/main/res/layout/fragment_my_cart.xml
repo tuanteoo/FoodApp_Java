@@ -8,17 +8,6 @@
     android:padding="10dp"
     tools:context=".ui.cart.MyCartFragment">
 
-    <ImageView
-        android:id="@+id/back_home"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
-        android:src="@drawable/back"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="9dp"
-        tools:ignore="ContentDescription" />
-
     <TextView
         android:id="@+id/text_myCart"
         android:layout_width="wrap_content"

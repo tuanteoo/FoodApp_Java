@@ -23,9 +23,6 @@
             android:name=".Activities.AddAddressActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.DeliveryAddressActivity"
-            android:exported="false" />
-        <activity
             android:name=".Activities.LayoutMyCartActivity"
             android:exported="false" />
         <activity

@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -19,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import hou.edu.vn.ngvtuan.food_app.Adapters.CartAdapter;
@@ -29,6 +29,7 @@ public class MyCartFragment extends Fragment {
     DatabaseReference databaseReference;
     RecyclerView recyclerView;
     CartAdapter cartAdapter;
+    private ArrayList<CartModel> cartModels;
 
     public MyCartFragment() {
     }
@@ -60,15 +61,12 @@ public class MyCartFragment extends Fragment {
             if (options.getSnapshots().isEmpty()){
                 Toast.makeText(getContext(),"Giỏ hàng của bạn đang trống!",Toast.LENGTH_SHORT).show();
             }else {
-                Navigation.findNavController(requireView()).navigate(R.id.nav_payment);
+                cartModels = new ArrayList<>(options.getSnapshots());
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("cartItems",cartModels);
+                Navigation.findNavController(requireView()).navigate(R.id.nav_payment,bundle);
             }
         });
-
-        ImageView btnBackHome = view.findViewById(R.id.back_home);
-        btnBackHome.setOnClickListener(v -> {
-            Navigation.findNavController(requireView()).navigate(R.id.nav_home);
-        });
-
         return view;
     }
 

@@ -35,7 +35,6 @@ public class HomeHorAdapter extends RecyclerView.Adapter<HomeHorAdapter.ViewHold
     int row_index = -1;
     private DatabaseReference databaseReference;
 
-
     public HomeHorAdapter(UpdateVerticalRec updateVerticalRec,DatabaseReference databaseReference, Activity activity, ArrayList<HomeHorModel> list) {
         this.updateVerticalRec = updateVerticalRec;
         this.activity = activity;
@@ -54,30 +53,6 @@ public class HomeHorAdapter extends RecyclerView.Adapter<HomeHorAdapter.ViewHold
     public void onBindViewHolder(@NonNull HomeHorAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.imageView.setImageResource(list.get(position).getImage());
         holder.name.setText(list.get(position).getName());
-
-//        if (check) {
-//            databaseReference = FirebaseDatabase.getInstance().getReference().child("Food");
-//            databaseReference.orderByChild("typeFood").equalTo("Sandwich").addListenerForSingleValueEvent(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//
-//                    ArrayList<HomeVerModel> homeVerModels = new ArrayList<>();
-//                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                        HomeVerModel food = snapshot.getValue(HomeVerModel.class);
-//                        homeVerModels.add(food);
-//                    }
-//                    updateVerticalRec.callBack(position, homeVerModels);
-//
-//                    check = false;
-//                }
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError databaseError) {
-//                    Log.e("HomeHorAdapter", "Failed to read value.", databaseError.toException());
-//                }
-//            });
-//
-//        }
-
 
         holder.cardView.setOnClickListener(v -> {
             row_index = position;
