@@ -97,8 +97,7 @@ public class HomeVerAdapter extends FirebaseRecyclerAdapter<HomeVerModel,HomeVer
                 int totalPriceFood = Integer.parseInt(bottomPrice.getText().toString()) * quantity[0];
                 int quantityBuy = Integer.parseInt(bottomQuantity.getText().toString());
 
-                assert Food_CartID != null;
-                databaseReference.child(Food_CartID).setValue(new CartModel(imageFood,nameFood,priceFood,totalPriceFood,quantityBuy));
+                databaseReference.child(Objects.requireNonNull(Food_CartID)).setValue(new CartModel(imageFood,nameFood,priceFood,totalPriceFood,quantityBuy));
 
                 bottomSheetDialog.dismiss();
             });

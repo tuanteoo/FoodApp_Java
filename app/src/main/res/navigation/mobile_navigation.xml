@@ -9,9 +9,6 @@
         android:id="@+id/nav_home"
         android:name="hou.edu.vn.ngvtuan.food_app.ui.home.HomeFragment"
         tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_nav_home_to_nav_delivery_address"
-            app:destination="@id/nav_delivery_address" />
     </fragment>
 
     <fragment
@@ -28,35 +25,31 @@
         android:name="hou.edu.vn.ngvtuan.food_app.ui.cart.MyCartFragment"
         tools:layout="@layout/fragment_my_cart">
         <action
-            android:id="@+id/action_cart_to_home"
-            app:destination="@id/nav_home"/>
-        <action
             android:id="@+id/action_nav_my_cart_to_nav_payment"
             app:destination="@id/nav_payment" />
     </fragment>
     <fragment
         android:id="@+id/nav_history"
-        android:name="hou.edu.vn.ngvtuan.food_app.ui.bill.HistoryOrderFragment"
-        tools:layout="@layout/fragment_history_order" />
+        android:name="hou.edu.vn.ngvtuan.food_app.ui.history.HistoryOrderFragment"
+        tools:layout="@layout/fragment_history_order" >
+    </fragment>
 
     <fragment
         android:id="@+id/nav_payment"
         android:name="hou.edu.vn.ngvtuan.food_app.Fragments.PaymentFragment"
         tools:layout="@layout/fragment_payment">
         <action
-            android:id="@+id/action_nav_payment_to_nav_my_cart"
-            app:destination="@id/nav_my_cart" />
-        <action
             android:id="@+id/action_nav_payment_to_nav_history"
             app:destination="@id/nav_history" />
+        <action
+            android:id="@+id/action_nav_payment_to_nav_delivery_address"
+            app:destination="@id/nav_delivery_address" />
     </fragment>
 
     <fragment
         android:id="@+id/nav_delivery_address"
         android:name="hou.edu.vn.ngvtuan.food_app.Fragments.DeliveryAddressFragment"
         tools:layout="@layout/fragment_delivery_address">
-        <action
-            android:id="@+id/action_nav_delivery_to_nav_home"
-            app:destination="@id/nav_home" />
+
     </fragment>
 </navigation>

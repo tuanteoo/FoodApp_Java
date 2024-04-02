@@ -53,7 +53,7 @@ public class DeliveryAddressAdapter extends FirebaseRecyclerAdapter<DeliAddressM
             intent.putExtra("username", model.getUserName());
             intent.putExtra("phonenumber", model.getPhoneNumber());
             intent.putExtra("showDelete",true);
-            intent.putExtra("keyAddress",getRef(position).getKey());
+            intent.putExtra("keyAddress",model.getKeyAddress());
 
             v.getContext().startActivity(intent);
         });

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hoá Đơn"
+            android:fontFamily="@font/salma_medium"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/syntax"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="#"
+            android:textSize="16sp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="1dp"
+            android:layout_toEndOf="@+id/textView"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/item_coming_idBill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="83845"
+            android:fontFamily="@font/salma_medium"
+            android:textSize="14sp"
+            android:layout_marginTop="1dp"
+            android:layout_toEndOf="@id/syntax"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/item_coming_dateOfBill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20/02/2024"
+            android:fontFamily="@font/salma_medium"
+            android:textSize="14sp"
+            android:layout_alignParentEnd="true"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/text_inforFood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thông tin món ăn >"
+            android:layout_below="@+id/textView"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/salma_medium"
+            tools:ignore="HardcodedText" />
+
+        <RelativeLayout
+            android:id="@+id/relay_mid"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_below="@+id/text_inforFood"
+            android:layout_marginTop="10dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rec_hor_listFoodOrder"
+                android:layout_width="280dp"
+                android:layout_height="80dp" />
+
+            <RelativeLayout
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$"
+                    android:textColor="@color/black"
+                    android:layout_toStartOf="@+id/itemBill_totalPrice"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/itemBill_totalPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    tools:ignore="HardcodedText"
+                    android:layout_alignParentEnd="true"/>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/itemBill_totalPrice"
+                    android:layout_alignParentBottom="true">
+
+                    <TextView
+                        android:id="@+id/item_bill_quantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3"
+                        android:layout_toStartOf="@id/textView2"
+                        android:layout_marginEnd="3dp"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="món >"
+                        android:layout_alignParentEnd="true"
+                        tools:ignore="HardcodedText" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#F5F5F5"
+            android:layout_below="@+id/relay_mid"/>
+
+        <TextView
+            android:id="@+id/item_bill_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đang đợi giao hàng ..."
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            android:layout_below="@+id/line"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/btn_cancel_Order"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="Huỷ"
+            android:textSize="14sp"
+            android:layout_below="@+id/line"
+            android:textAllCaps="false"
+            android:layout_marginStart="5dp"
+            tools:ignore="HardcodedText" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

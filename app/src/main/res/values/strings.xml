@@ -36,6 +36,10 @@
     <string name="delivery_address">Giao đến:</string>
     <string name="address_">96 Phố Định Công, Phương Liệt, Thanh Xuân, Hà Nội</string>
     <string name="web_client_id">389343952827-8av950cbrrpu601qbtn0g94fo9hteo7d.apps.googleusercontent.com</string>
+    <string name="coming">Đang đến</string>
+    <string name="history">Lịch Sử</string>
+    <string name="cartItems">cart_items</string>
+    <string name="ordercoming">Đang đợi giao hàng...</string>
 
     <string-array name="planets_array">
         <item>Pizza</item>

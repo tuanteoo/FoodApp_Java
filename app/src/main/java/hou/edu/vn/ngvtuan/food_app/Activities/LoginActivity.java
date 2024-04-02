@@ -106,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(new Intent(this, MainActivity.class));
                     }
                     else {
-                        Toast.makeText(this,"Có lỗi xảy ra",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this,"Có lỗi xảy ra khi đăng nhập",Toast.LENGTH_SHORT).show();
                     }
                 });
     }

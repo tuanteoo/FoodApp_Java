@@ -13,16 +13,6 @@
         android:layout_marginBottom="3dp"
         android:layout_alignParentTop="true">
 
-        <ImageView
-            android:id="@+id/back_cart"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="10dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:src="@drawable/back"
-            tools:ignore="ContentDescription" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -168,7 +158,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
-                app:cardCornerRadius="15dp">
+                app:cardCornerRadius="8dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -235,7 +225,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="10dp"
                         android:layout_marginTop="2dp"
-                        android:text="8"
+                        android:text="5"
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         tools:ignore="HardcodedText" />
@@ -264,7 +254,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/view12"
-                        android:text="Thuế"
+                        android:text="VAT"
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         tools:ignore="HardcodedText" />
@@ -409,17 +399,17 @@
             tools:ignore="HardcodedText" />
 
         <TextView
-            android:id="@+id/pm_internetbk"
+            android:id="@+id/pm_banking"
             android:autofillHints="postalAddress"
             android:layout_width="160dp"
             android:layout_height="40dp"
             android:textSize="18sp"
             android:text="Internet Banking"
             android:gravity="center"
-            android:textColor="@color/purple_500"
-            android:background="@drawable/btn_bg_design_red"
+            android:textColor="@color/black"
+            android:background="@drawable/text_bg_gray"
             android:layout_below="@id/text_paymentMethod"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             tools:ignore="HardcodedText"
             android:layout_marginStart="30dp"/>
 
@@ -431,12 +421,12 @@
             android:textSize="18sp"
             android:text="Tiền Mặt"
             android:gravity="center"
-            android:textColor="@color/black"
-            android:background="@drawable/btn_bg_design"
+            android:textColor="@color/purple_500"
+            android:background="@drawable/text_bg_red"
             android:layout_below="@id/text_paymentMethod"
-            android:layout_marginTop="5sp"
+            android:layout_marginTop="10sp"
             tools:ignore="HardcodedText"
-            android:layout_toEndOf="@id/pm_internetbk"
+            android:layout_toEndOf="@id/pm_banking"
             android:layout_marginStart="30dp"/>
 
         <Button

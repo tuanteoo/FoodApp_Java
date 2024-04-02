@@ -13,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,7 +30,7 @@ import hou.edu.vn.ngvtuan.food_app.Interface.OnItemSelectedListener;
 import hou.edu.vn.ngvtuan.food_app.R;
 import hou.edu.vn.ngvtuan.food_app.models.DeliAddressModel;
 public class DeliveryAddressFragment extends Fragment implements OnItemSelectedListener {
-    ImageView btn_backHome, btn_chooseLocation;
+    ImageView btn_chooseLocation;
     TextView addressDeli,userName,userPhoneNum;
     Button btn_move_addAddress;
     RecyclerView listAddressDeli;
@@ -52,7 +51,6 @@ public class DeliveryAddressFragment extends Fragment implements OnItemSelectedL
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_delivery_address, container, false);
 
-        btn_backHome = view.findViewById(R.id.back_home);
         btn_chooseLocation = view.findViewById(R.id.btn_chooseLocation);
         addressDeli = view.findViewById(R.id.address_deli);
         userName = view.findViewById(R.id.address_userName);
@@ -74,11 +72,6 @@ public class DeliveryAddressFragment extends Fragment implements OnItemSelectedL
         deliveryAddressAdapter = new DeliveryAddressAdapter(options, this);
         listAddressDeli.setAdapter(deliveryAddressAdapter);
 
-        //Back to HomeFragment
-        btn_backHome.setOnClickListener(v -> {
-            Navigation.findNavController(requireView()).navigate(R.id.nav_home);
-        });
-
         //Move to Activity Add New Address
         btn_move_addAddress.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), AddAddressActivity.class));
@@ -88,6 +81,10 @@ public class DeliveryAddressFragment extends Fragment implements OnItemSelectedL
     }
     @Override
     public void OnItemSelected(DeliAddressModel deliAddressModel) {
+        addressDeli.setText(deliAddressModel.getDeliAddress());
+        userName.setText(deliAddressModel.getUserName());
+        userPhoneNum.setText(deliAddressModel.getPhoneNumber());
+
         sharedPreferences = requireActivity().getSharedPreferences("selectedAddress", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("address", deliAddressModel.getDeliAddress());
@@ -96,7 +93,6 @@ public class DeliveryAddressFragment extends Fragment implements OnItemSelectedL
         editor.putString("oldSelectedItem",gson.toJson(deliAddressModel));
         editor.putString("oldSelectedItemKey",deliAddressModel.getKeyAddress());
         editor.apply();
-
     }
     @Override
     public void onStart() {

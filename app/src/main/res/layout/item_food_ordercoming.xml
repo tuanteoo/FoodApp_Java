@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/item_imageFood"
+        android:id="@+id/item_coming_imageFood"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:background="@drawable/food"
@@ -14,11 +14,13 @@
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/item_nameFood"
+        android:id="@+id/item_coming_nameFood"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name Food"
-        android:layout_below="@id/item_imageFood"
+        android:textColor="@color/black"
+        android:layout_marginTop="1dp"
+        android:layout_below="@id/item_coming_imageFood"
         tools:ignore="HardcodedText" />
 
 </RelativeLayout>

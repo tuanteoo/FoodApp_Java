@@ -27,7 +27,7 @@
         <item
             android:id="@+id/nav_history"
             android:icon="@drawable/baseline_history_24"
-            android:title="Đơn Hàng"
+            android:title="@string/history"
             tools:ignore="HardcodedText" />
     </group>
 </menu>

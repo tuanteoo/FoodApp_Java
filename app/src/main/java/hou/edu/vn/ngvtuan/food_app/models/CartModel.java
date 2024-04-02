@@ -1,8 +1,10 @@
 package hou.edu.vn.ngvtuan.food_app.models;
 
-public class CartModel {
-    String imageFood,nameFood;
-    int priceFood,price_quantity,quantity;
+import java.io.Serializable;
+
+public class CartModel implements Serializable {
+    String imageFood, nameFood;
+    int priceFood, price_quantity, quantity;
 
     public CartModel() {
     }
@@ -54,5 +56,4 @@ public class CartModel {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
 }

@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="15dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/textView"
@@ -27,7 +34,7 @@
             tools:ignore="HardcodedText" />
 
         <TextView
-            android:id="@+id/idBill"
+            android:id="@+id/item_history_idBill"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="83845"
@@ -38,7 +45,7 @@
             tools:ignore="HardcodedText" />
 
         <TextView
-            android:id="@+id/dateofBill"
+            android:id="@+id/item_history_dateBill"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="20/02/2024"
@@ -67,7 +74,7 @@
             android:layout_marginTop="10dp">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rec_hor_listFoodBill"
+                android:id="@+id/item_history_recListFood"
                 android:layout_width="260dp"
                 android:layout_height="80dp" />
 
@@ -81,17 +88,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="$"
+                    android:textSize="15sp"
                     android:textColor="@color/black"
-                    android:layout_toStartOf="@+id/itemBill_totalPrice"
+                    android:layout_toStartOf="@+id/item_history_totalPrice"
                     tools:ignore="HardcodedText" />
 
                 <TextView
-                    android:id="@+id/itemBill_totalPrice"
+                    android:id="@+id/item_history_totalPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5"
                     android:textColor="@color/black"
-                    android:textSize="14sp"
+                    android:textSize="16sp"
                     tools:ignore="HardcodedText"
                     android:layout_alignParentEnd="true"/>
 
@@ -99,14 +107,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_below="@+id/itemBill_totalPrice"
+                    android:layout_below="@+id/item_history_totalPrice"
                     android:layout_alignParentBottom="true">
 
                     <TextView
-                        android:id="@+id/item_bill_quantity"
+                        android:id="@+id/item_history_quantity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="3"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
                         android:layout_toStartOf="@id/textView2"
                         android:layout_marginEnd="3dp"
                         tools:ignore="HardcodedText" />
@@ -116,6 +126,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="món >"
+                        android:textSize="16sp"
                         android:layout_alignParentEnd="true"
                         tools:ignore="HardcodedText" />
                 </RelativeLayout>
@@ -132,15 +143,18 @@
             android:layout_below="@+id/relay_mid"/>
 
         <TextView
-            android:id="@+id/item_bill_status"
+            android:id="@+id/item_history_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Trạng thái"
+            android:textSize="16sp"
+            android:textColor="@color/black"
             android:layout_marginTop="8dp"
             android:layout_below="@+id/line"
             tools:ignore="HardcodedText" />
 
         <Button
+            android:id="@+id/btn_reOrder"
             android:layout_width="85dp"
             android:layout_height="40dp"
             android:gravity="center"
@@ -150,5 +164,5 @@
             android:layout_alignParentEnd="true"
             android:textAllCaps="false"
             tools:ignore="HardcodedText" />
-
-</RelativeLayout>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
