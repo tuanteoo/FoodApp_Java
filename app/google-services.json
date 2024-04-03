@@ -8,12 +8,25 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:389343952827:android:8736d823ecdcccbe080e9e",
+        "mobilesdk_app_id": "1:389343952827:android:7390f2865145311d080e9e",
         "android_client_info": {
-          "package_name": "hou.edu.vn.ngvtuan.food_app"
+          "package_name": "hou.edu.vn.ngvtuan.admin_foodapp"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "389343952827-7b9851ojegurtk4i7934okfetl113vfv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "hou.edu.vn.ngvtuan.admin_foodapp",
+            "certificate_hash": "5f2b4c3544cb1beb80c34eff62a982667d439e2a"
+          }
+        },
+        {
+          "client_id": "389343952827-8av950cbrrpu601qbtn0g94fo9hteo7d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCNTCFoAK4pid3DhDmQlSlyEYtgZt9hfQE"
@@ -21,7 +34,49 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "389343952827-8av950cbrrpu601qbtn0g94fo9hteo7d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:389343952827:android:8736d823ecdcccbe080e9e",
+        "android_client_info": {
+          "package_name": "hou.edu.vn.ngvtuan.food_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "389343952827-3fnm3me5crktobotb7m3a2m6c58uc5t3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "hou.edu.vn.ngvtuan.food_app",
+            "certificate_hash": "5f2b4c3544cb1beb80c34eff62a982667d439e2a"
+          }
+        },
+        {
+          "client_id": "389343952827-8av950cbrrpu601qbtn0g94fo9hteo7d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNTCFoAK4pid3DhDmQlSlyEYtgZt9hfQE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "389343952827-8av950cbrrpu601qbtn0g94fo9hteo7d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
