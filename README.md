@@ -27,7 +27,7 @@ YummyApp is a mobile application for food enthusiasts. It allows users to search
    - Firebase Account: Set up a Firebase project and configure your app.
 
 2. **Installation:**
-   - Clone this repository: `git clone `
+   - Clone this repository: `git clone https://github.com/tuanteoo/FoodApp_Java.git`
    - Open the project in Android Studio.
 
 3. **Configuration:**
